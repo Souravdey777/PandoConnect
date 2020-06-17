@@ -18,6 +18,7 @@ import {
   timeOutline,
   chatbubbleEllipsesOutline,
   heart,
+  heartOutline,
 } from "ionicons/icons";
 import { getHostName } from "../../helpers/domain";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
@@ -30,7 +31,8 @@ const LinkItem = ({ link, index, showCount, url, browser }) => {
     <IonCard routerLink={url} onClick={browser} button style={{
       margin: "5px",
       boxShadow: "rgba(2, 2, 2, 0.1) 0px 2px 10px",
-      borderRadius: "13px"
+      borderRadius: "13px",
+      maxWidth: "768px"
     }}>
       <IonCardContent class="ion-no-padding">
         <IonList lines="none">
@@ -96,7 +98,30 @@ const LinkItem = ({ link, index, showCount, url, browser }) => {
                     {getTimeAgoString(link.created)}</p>
 
                 </IonText>
-
+                
+                {link.voteCount>0 ?
+                <>
+                <IonIcon
+                  icon={heart}
+                  style={{
+                    verticalAlign: "middle",
+                  }}
+                />{" "}
+                <IonText
+                  style={{
+                    verticalAlign: "middle",
+                  }}
+                >
+                  {link.voteCount}
+                </IonText>
+                </>:
+                <IonIcon
+                icon={heartOutline}
+                style={{
+                  verticalAlign: "middle",
+                }}
+              />}
+                {" "}
                 {link.comments.length > 0 && (
                   <>
 
@@ -114,27 +139,9 @@ const LinkItem = ({ link, index, showCount, url, browser }) => {
                       {link.comments.length}
                     </IonText>
                   </>
-                )}{" "}
-                
-                {link.voteCount>0 &&
-                <>
-                <IonIcon
-                  icon={heart}
-                  style={{
-                    verticalAlign: "middle",
-                  }}
-                />{" "}
-                <IonText
-                  style={{
-                    verticalAlign: "middle",
-                  }}
-                >
-                  {link.voteCount}
-                </IonText>
-                </>}
+                )}
               </div>
             </IonLabel>
-
             <IonAvatar slot="end">
               <img
                 src={link.postedBy.photoURL}

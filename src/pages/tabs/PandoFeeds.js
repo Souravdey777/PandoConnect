@@ -6,12 +6,12 @@ import LinkList from "../../components/Link/LinkList";
 import Search from "./Search";
 // import Submit from "./Submit";
 
-const News = (props) => {
+const PandoFeeds = (props) => {
   return (
     <IonPage>
-    {/* <SmallHeader title="News" /> */}
+    {/* <SmallHeader title="PandoFeeds" /> */}
     <IonContent fullscreen>
-      {/* <LargeHeader title="News" /> */}
+      {/* <LargeHeader title="PandoFeeds" /> */}
         <IonText>
           <h1 style={{
             padding: "10px 20px",
@@ -26,4 +26,4 @@ const News = (props) => {
   );
 };
 
-export default News;
+export default PandoFeeds;

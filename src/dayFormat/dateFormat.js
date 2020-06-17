@@ -13,7 +13,7 @@ export const getTimeAgoString = (timestamp) => {
             const round = Math.round(elapsed / value);
             return `${round} ${unit}${round > 1
                 ? 's'
-                : ''} ago`;
+                : ''}`;
         };
     if (elapsed < MINUTE) {
         return getElapsedString(SECOND, 'second');

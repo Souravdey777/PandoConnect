@@ -10,9 +10,17 @@ import {
   IonCol,
   IonButton,
   IonListHeader,
+  IonLabel,
+  IonAvatar,
+  IonList,
+  IonItem,
+  IonTextarea,
+  IonIcon,
+  IonInput,
+  IonText,
 } from "@ionic/react";
 import NavHeader from "../components/Header/NavHeader";
-import { closeCircleOutline } from "ionicons/icons";
+import { closeCircleOutline, sendOutline, send, heart } from "ionicons/icons";
 import LinkItem from "../components/Link/LinkItem";
 import CommentModal from "../components/Link/CommentModal";
 import LinkComment from "../components/Link/LinkComment";
@@ -25,6 +33,12 @@ const Link = (props) => {
   const [showModal, setShowModal] = React.useState(false);
   const linkId = props.match.params.linkId;
   const linkRef = firebase.db.collection("blogs").doc(linkId);
+  const [commentText, setCommentText] = React.useState();
+
+  function handleSendAction(item) {
+    handleAddComment(item);
+    setCommentText("");
+  }
 
   React.useEffect(() => {
     getLink();
@@ -37,13 +51,13 @@ const Link = (props) => {
     });
   }
 
-  function handleOpenModal() {
-    if (!user) {
-      props.history.push("/login");
-    } else {
-      setShowModal(true);
-    }
-  }
+  // function handleOpenModal() {
+  //   if (!user) {
+  //     props.history.push("/login");
+  //   } else {
+  //     setShowModal(true);
+  //   }
+  // }
 
   function handleCloseModal() {
     setShowModal(false);
@@ -57,7 +71,11 @@ const Link = (props) => {
         if (doc.exists) {
           const previousComments = doc.data().comments;
           const newComment = {
-            postedBy: { id: user.uid, name: user.displayName },
+            postedBy: {
+              id: user.uid,
+              name: user.displayName,
+              photoURL: user.photoURL
+            },
             created: Date.now(),
             text: commentText,
           };
@@ -137,27 +155,60 @@ const Link = (props) => {
               <IonRow>
                 <IonCol class="ion-text-center">
                   <LinkItem link={link} browser={openBrowser} />
-                  <IonButton onClick={() => handleAddVote()} size="small">
-                    Upvote
-                  </IonButton>
-                  <IonButton onClick={() => handleOpenModal()} size="small">
-                    Comment
-                  </IonButton>
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol>
+                  <IonLabel style={{ margin: "10px" }} onClick={() => handleAddVote()} size="small">
+                    <IonIcon
+                      icon={heart}
+                      style={{
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    <IonText
+                      style={{
+                        verticalAlign: "middle",
+                      }}
+                    >
+                      Upvote
+                    </IonText>
+                  </IonLabel>
                 </IonCol>
               </IonRow>
             </IonGrid>
-
             <IonListHeader>
               <h3>Comments</h3>
             </IonListHeader>
-            {link.comments.map((comment, index) => (
-              <LinkComment
-                key={index}
-                comment={comment}
-                link={link}
-                setLink={setLink}
-              />
-            ))}
+            <IonList>
+              <IonItem>
+                <IonAvatar slot="start">
+                  <img
+                    src={user.photoURL}
+                    style={{
+                      verticalAlign: "middle",
+                    }}
+                    alt="profile"
+                  />
+                </IonAvatar>
+                <IonInput
+                  placeholder="Your comment"
+                  value={commentText}
+                  onIonChange={(e) => setCommentText(e.target.value)}
+                />
+                <IonIcon icon={send} color="primary" size="small" onClick={() => handleSendAction(commentText)}></IonIcon>
+              </IonItem>
+            </IonList>
+            <IonContent>
+              {link.comments.map((comment, index) => (
+                <LinkComment
+                  key={index}
+                  comment={comment}
+                  link={link}
+                  setLink={setLink}
+                />
+              ))}
+            </IonContent>
           </>
         )}
       </IonContent>

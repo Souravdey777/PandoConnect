@@ -3,18 +3,19 @@ import UserContext from "../../contexts/UserContext";
 import firebase from "../../firebase";
 import CommentModal from "./CommentModal";
 import {
-  IonCard,
-  IonCardContent,
+  // IonCard,
+  // IonCardContent,
   IonList,
   IonItem,
   IonLabel,
   IonButton,
-  IonListHeader,
+  // IonListHeader,
   IonAvatar,
-  IonIcon,
+  // IonIcon,
 } from "@ionic/react";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
-import { personCircleOutline } from "ionicons/icons";
+import { getTimeAgoString } from "../../dayFormat/dateFormat";
+// import { personCircleOutline } from "ionicons/icons";
 
 const LinkComment = ({ comment, link, setLink }) => {
   const { user } = React.useContext(UserContext);
@@ -32,7 +33,11 @@ const LinkComment = ({ comment, link, setLink }) => {
       if (doc.exists) {
         const previousComments = doc.data().comments;
         const newComment = {
-          postedBy: { id: user.uid, name: user.displayName, photoURL: user.photoURL },
+          postedBy: {
+            id: user.uid,
+            name: user.displayName,
+            photoURL: user.photoURL
+          },
           created: Date.now(),
           text: commentText,
         };
@@ -77,17 +82,26 @@ const LinkComment = ({ comment, link, setLink }) => {
       />
       <IonList>
         <IonItem>
-
+          <IonAvatar slot="start">
+            <img
+              src={comment.postedBy.photoURL}
+              style={{
+                verticalAlign: "middle",
+              }}
+              alt="profile"
+            />
+          </IonAvatar>
           <IonLabel>
-            <h3>
-
-                <IonIcon icon={personCircleOutline}  class="ion-padding-horizontal" />
-                {comment.postedBy.name}
-                {/* <img src="./avatar-poe.png" /> */}
-              </h3>
-            {/* <h3>New Ride</h3> */}
+            <h3>{comment.postedBy.name}</h3>
             <p>{comment.text}</p>
-            <p>{formatDistanceToNow(comment.created)}</p>
+            <p style={{
+              verticalAlign: "middle",
+              fontSize: "0.7rem",
+              color: "#999",
+              fontWeight: "normal"
+            }}
+            >
+              {getTimeAgoString(comment.created)}</p>
             {postedByAuthUser && (
               <IonButton size="small" onClick={() => setShowModal(true)}>
                 Edit
@@ -101,6 +115,7 @@ const LinkComment = ({ comment, link, setLink }) => {
                 Delete
               </IonButton>
             )}
+
           </IonLabel>
         </IonItem>
       </IonList>

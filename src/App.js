@@ -17,7 +17,7 @@ import {
   createOutline,
   trendingUpOutline,
 } from "ionicons/icons";
-import News from "./pages/tabs/News";
+import PandoFeeds from "./pages/tabs/PandoFeeds";
 import Trending from "./pages/tabs/Trending";
 import Submit from "./pages/tabs/Submit";
 import Search from "./pages/tabs/Search";
@@ -61,10 +61,12 @@ const App = () => {
             <IonRouterOutlet>
               <Route
                 path="/"
-                render={() => <Redirect to="/news" />}
+                render={() => <Redirect to="/pandofeeds
+                " />}
                 exact={true}
               />
-              <Route path="/news" component={News} />
+              <Route path="/pandofeeds
+              " component={PandoFeeds} />
               <Route path="/trending" component={Trending} />
               <Route path="/submit" component={Submit} />
               <Route path="/profile" component={Profile} />
@@ -74,14 +76,17 @@ const App = () => {
               <Route path="/forgot" component={Forgot} />
               <Route path="/tips" component={Tips} />
               <Route path="/link/:linkId" component={Link} />
-              <Route component={() => <Redirect to="/news" />} />
+              <Route component={() => <Redirect to="/pandofeeds
+              " />} />
             </IonRouterOutlet>
             <IonTabBar slot="bottom" style={{
               borderRadius: "30px 30px 0px 0px",
               height: "60px",
               boxShadow: "rgba(2, 2, 2, 0.1) 0px 2px 10px",
             }}>
-              <IonTabButton tab="news" href="/news">
+              <IonTabButton tab="pandofeeds
+              " href="/pandofeeds
+              ">
                 <IonIcon icon={newspaperOutline} />
                 <IonLabel>PandoFeed</IonLabel>
               </IonTabButton>

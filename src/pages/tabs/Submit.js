@@ -43,7 +43,7 @@ const Submit = (props) => {
           name: user.displayName,
           photoURL: user.photoURL
         },
-        voteCount: 1,
+        voteCount: 0,
         votes: [],
         comments: [],
         created: Date.now(),
@@ -52,6 +52,7 @@ const Submit = (props) => {
       props.history.push("/");
     }
   }
+
   return (
     <IonPage>
       {/* <SmallHeader title="Submit" /> */}
@@ -77,6 +78,17 @@ const Submit = (props) => {
             onIonChange={handleChange}
             required
           ></IonInput>
+        </IonItem>
+        <IonItem lines="full">
+          
+          <IonButton
+              type="submit"
+              color="primary"
+              expand="block"
+              onClick={handleChange}
+            >
+              Upload
+            </IonButton>
         </IonItem>
         <IonRow>
           <IonCol>
