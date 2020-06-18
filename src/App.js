@@ -61,12 +61,10 @@ const App = () => {
             <IonRouterOutlet>
               <Route
                 path="/"
-                render={() => <Redirect to="/pandofeeds
-                " />}
+                render={() => <Redirect to="/pandofeeds" />}
                 exact={true}
               />
-              <Route path="/pandofeeds
-              " component={PandoFeeds} />
+              <Route path="/pandofeeds" component={PandoFeeds} />
               <Route path="/trending" component={Trending} />
               <Route path="/submit" component={Submit} />
               <Route path="/profile" component={Profile} />
@@ -76,8 +74,7 @@ const App = () => {
               <Route path="/forgot" component={Forgot} />
               <Route path="/tips" component={Tips} />
               <Route path="/link/:linkId" component={Link} />
-              <Route component={() => <Redirect to="/pandofeeds
-              " />} />
+              <Route component={() => <Redirect to="/pandofeeds" />} />
             </IonRouterOutlet>
             <IonTabBar slot="bottom" style={{
               borderRadius: "30px 30px 0px 0px",

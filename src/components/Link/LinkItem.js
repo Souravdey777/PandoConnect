@@ -20,7 +20,7 @@ import {
   heart,
   heartOutline,
 } from "ionicons/icons";
-import { getHostName } from "../../helpers/domain";
+// import { getHostName } from "../../helpers/domain";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { getTimeAgoString } from "../../dayFormat/dateFormat";
 // import UserContext from "../../contexts/UserContext";
@@ -36,10 +36,15 @@ const LinkItem = ({ link, index, showCount, url, browser }) => {
     }}>
       <IonCardContent class="ion-no-padding">
         <IonList lines="none">
-
-
           <IonItem lines="none">
             <IonLabel>
+              <div className=" ion-text-wrap">
+                <p style={{
+                  fontSize: "0.9rem",
+                  color: "#666",
+                  fontWeight: "normal",
+                }}>{link.url}</p>
+              </div>
               <p
                 style={{
                   alignItems: "center",
@@ -47,28 +52,20 @@ const LinkItem = ({ link, index, showCount, url, browser }) => {
                   fontWeight: "normal",
                 }}
               >
-                <IonIcon
+                {/* <IonIcon
                   icon={linkOutline}
                   style={{
                     verticalAlign: "middle",
                   }}
-                />{" "}
+                />{" "} */}
                 <IonText
                   style={{
                     verticalAlign: "middle",
                   }}
                 >
-                  {getHostName(link.url)}
+                  {link.description}
                 </IonText>
               </p>
-
-              <div className=" ion-text-wrap">
-                <p style={{
-                  fontSize: "0.9rem",
-                  color: "#666",
-                  fontWeight: "normal",
-                }}>{link.description}</p>
-              </div>
             </IonLabel>
           </IonItem>
           <IonItem lines="none">
@@ -98,29 +95,29 @@ const LinkItem = ({ link, index, showCount, url, browser }) => {
                     {getTimeAgoString(link.created)}</p>
 
                 </IonText>
-                
-                {link.voteCount>0 ?
-                <>
-                <IonIcon
-                  icon={heart}
-                  style={{
-                    verticalAlign: "middle",
-                  }}
-                />{" "}
-                <IonText
-                  style={{
-                    verticalAlign: "middle",
-                  }}
-                >
-                  {link.voteCount}
-                </IonText>
-                </>:
-                <IonIcon
-                icon={heartOutline}
-                style={{
-                  verticalAlign: "middle",
-                }}
-              />}
+
+                {link.voteCount > 0 ?
+                  <>
+                    <IonIcon
+                      icon={heart}
+                      style={{
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    <IonText
+                      style={{
+                        verticalAlign: "middle",
+                      }}
+                    >
+                      {link.voteCount}
+                    </IonText>
+                  </> :
+                  <IonIcon
+                    icon={heartOutline}
+                    style={{
+                      verticalAlign: "middle",
+                    }}
+                  />}
                 {" "}
                 {link.comments.length > 0 && (
                   <>

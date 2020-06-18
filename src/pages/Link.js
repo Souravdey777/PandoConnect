@@ -171,16 +171,16 @@ const Link = (props) => {
                         verticalAlign: "middle",
                       }}
                     >
-                      Upvote
+                      upvote
                     </IonText>
                   </IonLabel>
                 </IonCol>
               </IonRow>
             </IonGrid>
             <IonListHeader>
-              <h3>Comments</h3>
+                    <h3>{link.comments.length>0?"Comments":"No Comments"}</h3>
             </IonListHeader>
-            <IonList>
+            {user && <IonList>
               <IonItem>
                 <IonAvatar slot="start">
                   <img
@@ -198,7 +198,7 @@ const Link = (props) => {
                 />
                 <IonIcon icon={send} color="primary" size="small" onClick={() => handleSendAction(commentText)}></IonIcon>
               </IonItem>
-            </IonList>
+            </IonList>}
             <IonContent>
               {link.comments.map((comment, index) => (
                 <LinkComment

@@ -58,6 +58,17 @@ const Submit = (props) => {
       {/* <SmallHeader title="Submit" /> */}
       <IonContent fullscreen>
         {/* <LargeHeader title="Submit" /> */}
+        
+        <IonItem lines="full">
+          <IonLabel position="floating">Title</IonLabel>
+          <IonInput
+            name="url"
+            value={values.url}
+            type="url"
+            onIonChange={handleChange}
+            required
+          ></IonInput>
+        </IonItem>
         <IonItem lines="full">
           <IonLabel position="floating">Description</IonLabel>
           <IonTextarea
@@ -69,27 +80,19 @@ const Submit = (props) => {
             rows={6}
           ></IonTextarea>
         </IonItem>
-        <IonItem lines="full">
-          <IonLabel position="floating">URL</IonLabel>
-          <IonInput
-            name="url"
-            value={values.url}
-            type="url"
-            onIonChange={handleChange}
-            required
-          ></IonInput>
-        </IonItem>
-        <IonItem lines="full">
-          
-          <IonButton
+
+        <IonRow>
+          <IonCol>
+            <IonButton
               type="submit"
               color="primary"
               expand="block"
-              onClick={handleChange}
+              onClick={handleSubmit}
             >
               Upload
             </IonButton>
-        </IonItem>
+          </IonCol>
+        </IonRow>
         <IonRow>
           <IonCol>
             <IonButton

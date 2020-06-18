@@ -42,31 +42,41 @@ const Profile = (props) => {
         {/* <LargeHeader title="Profile" /> */}
         {user ? (
           <>
-            <IonCard>
-              <IonCardContent>
-                <IonList lines="none">
-                  <IonItem>
-                  <IonAvatar slot="start">
+            <IonCard style={{
+              background: `linear-gradient(90deg,#00000066,#00000066), url("${user.photoURL}") no-repeat 100% 100%`,
+              backgroundSize: "100%",
+              height: `${window.innerWidth - 25}px`,
+
+            }}>
+              <IonCardContent style={{
+                background: `transparent`
+              }}>
+                <IonList lines="none" style={{
+                  background: `transparent`
+                }}>
+                  <IonItem style={{ borderRadius: "13px" }} color="primary">
+                    <IonAvatar slot="start">
                       <img src={user.photoURL} alt="profile" />
                     </IonAvatar>
                     {/* <IonIcon icon={personCircleOutline} slot="start"></IonIcon> */}
                     <IonLabel>
                       <strong>{user.displayName}</strong>
-                      <p>Username</p>
+                      <p>Motivator</p>
                     </IonLabel>
                   </IonItem>
 
-                  <IonItem>
+                  {/* <IonItem>
                     <IonIcon icon={mailOutline} slot="start"></IonIcon>
                     <IonLabel>
                       <strong>{user.email}</strong>
                       <p>Email</p>
                     </IonLabel>
-                  </IonItem>
+                  </IonItem> */}
                 </IonList>
+                {/* <p>total post: 10</p> */}
               </IonCardContent>
             </IonCard>
-            <IonRow>
+            {/* <IonRow>
               <IonCol>
                 <IonButton
                   expand="block"
@@ -77,42 +87,84 @@ const Profile = (props) => {
                   Edit Profile
                 </IonButton>
               </IonCol>
-            </IonRow>
+            </IonRow> */}
             <IonRow>
               <IonCol>
-                <IonButton expand="block" onClick={logoutUser}>
+                <IonButton expand="block" 
+                onClick={logoutUser}
+                fill="outline">
                   Log Out
                 </IonButton>
               </IonCol>
             </IonRow>
+              <IonRow>
+                <IonCol>
+                  <IonButton
+                    expand="block"
+                    routerLink={"/tips"}
+                    color="primary"
+                  >How it works
+                </IonButton>
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol>
+                  <IonButton
+                    expand="block"
+                    routerLink={"/tips"}
+                    color="primary"
+                  >Tips for Covid 19
+                </IonButton>
+                </IonCol>
+              </IonRow>
           </>
         ) : (
-          <IonGrid>
-            <IonRow>
-              <IonCol>
-                <IonButton
-                  expand="block"
-                  routerLink={"/register"}
-                  color="primary"
-                >
-                  Sign Up
+            <IonGrid style={{ marginTop: "200px" }}>
+              {/* <IonRow> */}
+              {/* <IonCol>
+                  <IonButton
+                    expand="block"
+                    routerLink={"/register"}
+                    color="primary"
+                  >
+                    Sign Up
                 </IonButton>
-              </IonCol>
-            </IonRow>
-            <IonRow>
-              <IonCol>
-                <IonButton
-                  expand="block"
-                  routerLink={"/login"}
-                  color="primary"
-                  fill="outline"
-                >
-                  Log In
+                </IonCol> */}
+              {/* </IonRow> */}
+              <IonRow>
+                <IonCol>
+                  <IonButton
+                    expand="block"
+                    routerLink={"/tips"}
+                    color="primary"
+                  >How it works
                 </IonButton>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
-        )}
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol>
+                  <IonButton
+                    expand="block"
+                    routerLink={"/tips"}
+                    color="primary"
+                  >Tips for Covid 19
+                </IonButton>
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol>
+                  <IonButton
+                    expand="block"
+                    routerLink={"/login"}
+                    color="primary"
+                    fill="outline"
+                  >
+                    Sign In
+                </IonButton>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          )}
       </IonContent>
     </IonPage>
   );

@@ -34,8 +34,8 @@ const Login = (props) => {
     setBusy(true);
     const { email, password } = values;
     try {
-      await firebase.doSignInWithGoogle().then((data)=>{
-console.log(data);
+      await firebase.doSignInWithGoogle().then((data) => {
+        console.log(data);
       });
       toast("You have logged in successfully!");
       props.history.push("/");
@@ -77,11 +77,30 @@ console.log(data);
               type="submit"
               color="primary"
               expand="block"
+              // onClick={handleSubmit}
+              disabled={isSubmitting}
+            >
+              Sign In
+            </IonButton>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <IonButton
+              expand="block"
+              routerLink={"/login"}
+              color="primary"
+              fill="outline"
               onClick={handleSubmit}
               disabled={isSubmitting}
             >
-              Log In
-            </IonButton>
+              <img alt="logo" style={{
+                marginRight: "10px",
+                width: "18px",
+                height: "18px"
+              }} src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+                  Sign in with Google
+                </IonButton>
           </IonCol>
         </IonRow>
         <IonRow>

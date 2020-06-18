@@ -66,7 +66,7 @@ const Search = () => {
         />
         {filter.length>0?(
         <StackGrid
-        columnWidth={(window.innerWidth-20)/2}
+        columnWidth={(window.innerWidth>768?(window.innerWidth-60)/4:(window.innerWidth-20)/2)}
         // gutterWidth={2}
         duration={500}
         monitorImagesLoaded={true}
