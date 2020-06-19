@@ -41,7 +41,7 @@ const LinkList = (props) => {
         // columnWidth={30}
         duration={500}
         monitorImagesLoaded={true}
-        appearDelay ={100}
+        appearDelay ={1000}
         >
          {blogs.map((link, index) => (
         <LinkItem

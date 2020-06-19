@@ -58,8 +58,11 @@ const Submit = (props) => {
       {/* <SmallHeader title="Submit" /> */}
       <IonContent fullscreen>
         {/* <LargeHeader title="Submit" /> */}
-        
-        <IonItem lines="full">
+
+        <IonItem lines="full" style={{
+          maxWidth: "425px",
+          margin: "auto"
+        }}>
           <IonLabel position="floating">Title</IonLabel>
           <IonInput
             name="url"
@@ -69,7 +72,10 @@ const Submit = (props) => {
             required
           ></IonInput>
         </IonItem>
-        <IonItem lines="full">
+        <IonItem lines="full" style={{
+          maxWidth: "425px",
+          margin: "auto"
+        }}>
           <IonLabel position="floating">Description</IonLabel>
           <IonTextarea
             name="description"
@@ -81,7 +87,10 @@ const Submit = (props) => {
           ></IonTextarea>
         </IonItem>
 
-        <IonRow>
+        <IonRow style={{
+          maxWidth: "425px",
+          margin: "auto"
+        }}>
           <IonCol>
             <IonButton
               type="submit"
@@ -93,7 +102,10 @@ const Submit = (props) => {
             </IonButton>
           </IonCol>
         </IonRow>
-        <IonRow>
+        <IonRow style={{
+          maxWidth: "425px",
+          margin: "auto"
+        }}>
           <IonCol>
             <IonButton
               type="submit"

@@ -1,28 +1,19 @@
 import React from "react";
-import { IonPage, IonContent, IonText, IonImg } from "@ionic/react";
-import SmallHeader from "../../components/Header/SmallHeader";
-import LargeHeader from "../../components/Header/LargeHeader";
+import { IonPage, IonContent } from "@ionic/react";
 import LinkList from "../../components/Link/LinkList";
 import trending from "./trending.png";
+import trending2 from "./trending2.png";
 
 const Trending = (props) => {
   return (
     <IonPage>
-      {/* <SmallHeader title="Trending" /> */}
       <IonContent fullscreen>
-        {/* <LargeHeader title="Trending" /> */}
-        {/* <IonText>
-          <h1 style={{
-            padding: "10px 20px",
-            fontWeight: "bold"
-          }}>Most<br/><span>Motivating</span><br/>Stories</h1>
-        </IonText> */}
-        <IonImg src={trending}>
+        <img alt="trendingheader" src={window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches?trending2:trending}>
           {/* <h1 style={{
             padding: "10px 20px",
             fontWeight: "bold"
           }}>Most<br/><span>Motivating</span><br/>Stories</h1> */}
-          </IonImg>
+          </img>
         <LinkList location={props.location} />
       </IonContent>
     </IonPage>

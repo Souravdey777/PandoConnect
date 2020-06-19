@@ -12,7 +12,7 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import {
   newspaperOutline,
-  searchOutline,
+  // searchOutline,
   personCircleOutline,
   createOutline,
   trendingUpOutline,
@@ -20,7 +20,7 @@ import {
 import PandoFeeds from "./pages/tabs/PandoFeeds";
 import Trending from "./pages/tabs/Trending";
 import Submit from "./pages/tabs/Submit";
-import Search from "./pages/tabs/Search";
+// import Search from "./pages/tabs/Search";
 import Profile from "./pages/tabs/Profile";
 import EditProfile from "./pages/auth/EditProfile";
 import Signup from "./pages/auth/Signup";
@@ -81,9 +81,7 @@ const App = () => {
               height: "60px",
               boxShadow: "rgba(2, 2, 2, 0.1) 0px 2px 10px",
             }}>
-              <IonTabButton tab="pandofeeds
-              " href="/pandofeeds
-              ">
+              <IonTabButton tab="pandofeeds" href="/pandofeeds">
                 <IonIcon icon={newspaperOutline} />
                 <IonLabel>PandoFeed</IonLabel>
               </IonTabButton>

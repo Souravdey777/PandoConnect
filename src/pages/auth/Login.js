@@ -51,7 +51,10 @@ const Login = (props) => {
       <NavHeader title="Log In" />
       <IonLoading message={"Please wait..."} isOpen={busy} />
       <IonContent>
-        <IonItem lines="full">
+        <IonItem lines="full"  style={{
+                  maxWidth: "425px",
+                  margin:"auto"
+                  }}>
           <IonLabel position="floating">Email</IonLabel>
           <IonInput
             name="email"
@@ -61,7 +64,10 @@ const Login = (props) => {
             required
           ></IonInput>
         </IonItem>
-        <IonItem lines="full">
+        <IonItem lines="full"  style={{
+                  maxWidth: "425px",
+                  margin:"auto"
+                  }}>
           <IonLabel position="floating">Password</IonLabel>
           <IonInput
             name="password"
@@ -71,7 +77,10 @@ const Login = (props) => {
             required
           ></IonInput>
         </IonItem>
-        <IonRow>
+        <IonRow  style={{
+                  maxWidth: "425px",
+                  margin:"auto"
+                  }}>
           <IonCol>
             <IonButton
               type="submit"
@@ -84,7 +93,10 @@ const Login = (props) => {
             </IonButton>
           </IonCol>
         </IonRow>
-        <IonRow>
+        <IonRow style={{
+                  maxWidth: "425px",
+                  margin:"auto"
+                  }}>
           <IonCol>
             <IonButton
               expand="block"
@@ -103,7 +115,10 @@ const Login = (props) => {
                 </IonButton>
           </IonCol>
         </IonRow>
-        <IonRow>
+        <IonRow  style={{
+                  maxWidth: "425px",
+                  margin:"auto"
+                  }}>
           <IonCol class="ion-text-center ion-padding-vertical">
             <IonRouterLink routerLink={"/forgot"}>
               Forgot Password?

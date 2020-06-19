@@ -63,6 +63,10 @@ const Search = () => {
           value={filter}
           onKeyPress={handleChange}
           animated
+          style={{
+            maxWidth: "425px",
+            margin:"auto"
+            }}
         />
         {filter.length>0?(
         <StackGrid

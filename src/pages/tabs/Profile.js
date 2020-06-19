@@ -6,7 +6,6 @@ import {
   IonCardContent,
   IonList,
   IonItem,
-  IonIcon,
   IonLabel,
   IonRow,
   IonCol,
@@ -14,12 +13,9 @@ import {
   IonGrid,
   IonAvatar,
 } from "@ionic/react";
-import SmallHeader from "../../components/Header/SmallHeader";
-import LargeHeader from "../../components/Header/LargeHeader";
 import { toast } from "../../helpers/toast";
 import firebase from "../../firebase";
 import UserContext from "../../contexts/UserContext";
-import { personCircleOutline, mailOutline } from "ionicons/icons";
 
 const Profile = (props) => {
   const { user } = React.useContext(UserContext);
@@ -36,17 +32,18 @@ const Profile = (props) => {
   }
 
   return (
-    <IonPage>
+    <IonPage >
       {/* <SmallHeader title="Profile" /> */}
-      <IonContent fullscreen>
+      <IonContent fullscreen >
         {/* <LargeHeader title="Profile" /> */}
         {user ? (
           <>
             <IonCard style={{
               background: `linear-gradient(90deg,#00000066,#00000066), url("${user.photoURL}") no-repeat 100% 100%`,
               backgroundSize: "100%",
-              height: `${window.innerWidth - 25}px`,
-
+              height: `${window.innerWidth>424?380:(window.innerWidth - 25)}px`,
+              maxWidth: "425px",
+              margin:"auto"
             }}>
               <IonCardContent style={{
                 background: `transparent`
@@ -88,7 +85,10 @@ const Profile = (props) => {
                 </IonButton>
               </IonCol>
             </IonRow> */}
-            <IonRow>
+            <IonRow style={{
+                  maxWidth: "425px",
+                  margin:"auto"
+                  }}>
               <IonCol>
                 <IonButton expand="block" 
                 onClick={logoutUser}
@@ -97,7 +97,10 @@ const Profile = (props) => {
                 </IonButton>
               </IonCol>
             </IonRow>
-              <IonRow>
+              <IonRow style={{
+                  maxWidth: "425px",
+                  margin:"auto"
+                  }}>
                 <IonCol>
                   <IonButton
                     expand="block"
@@ -107,7 +110,10 @@ const Profile = (props) => {
                 </IonButton>
                 </IonCol>
               </IonRow>
-              <IonRow>
+              <IonRow style={{
+                  maxWidth: "425px",
+                  margin:"auto"
+                  }}>
                 <IonCol>
                   <IonButton
                     expand="block"
@@ -119,7 +125,11 @@ const Profile = (props) => {
               </IonRow>
           </>
         ) : (
-            <IonGrid style={{ marginTop: "200px" }}>
+            <IonGrid style={{
+              margin:"auto",
+              marginTop: "200px",
+              maxWidth: "425px",
+              }}>
               {/* <IonRow> */}
               {/* <IonCol>
                   <IonButton

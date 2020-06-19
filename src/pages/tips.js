@@ -13,13 +13,11 @@ const Tips = (props) => {
   return (
     <IonPage>
       <IonContent fullscreen scroll-y="false" >
-        <IonSlides>
-          <IonSlide>
-            <div style={{ verticalAlign: "middle" }}>
+        <IonSlides style={{ verticalAlign: "middle", height: "100%" }}>
+          <IonSlide style={{backgroundColor:"#050a24"}}>
               <img src={image1} alt="1" />
               {/* <h2>Welcome</h2> */}
               {/* <p>The <b>ionic conference app</b> is a practical preview of the ionic framework in action, and a demonstration of proper code use.</p> */}
-            </div>
           </IonSlide>
 
           <IonSlide>
@@ -28,7 +26,7 @@ const Tips = (props) => {
         <p><b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.</p> */}
           </IonSlide>
 
-          <IonSlide>
+          <IonSlide style={{backgroundColor:"#050a24"}}>
             <img src={image3} alt="3" />
             {/* <h2>What is Ionic Appflow?</h2>
         <p><b>Ionic Appflow</b> is a powerful set of services and features built on top of Ionic Framework that brings a totally new level of app development agility to mobile dev teams.</p> */}
@@ -40,7 +38,7 @@ const Tips = (props) => {
         <p><b>Ionic Appflow</b> is a powerful set of services and features built on top of Ionic Framework that brings a totally new level of app development agility to mobile dev teams.</p> */}
           </IonSlide>
 
-          <IonSlide>
+          <IonSlide style={{backgroundColor:"#050a24"}}>
             <img src={image5} alt="5" />
             {/* <h2>What is Ionic Appflow?</h2>
         <p><b>Ionic Appflow</b> is a powerful set of services and features built on top of Ionic Framework that brings a totally new level of app development agility to mobile dev teams.</p> */}

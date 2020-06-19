@@ -21,7 +21,7 @@ import {
   heartOutline,
 } from "ionicons/icons";
 // import { getHostName } from "../../helpers/domain";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
+// import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { getTimeAgoString } from "../../dayFormat/dateFormat";
 // import UserContext from "../../contexts/UserContext";
 
@@ -32,13 +32,13 @@ const LinkItem = ({ link, index, showCount, url, browser }) => {
       margin: "5px",
       boxShadow: "rgba(2, 2, 2, 0.1) 0px 2px 10px",
       borderRadius: "13px",
-      maxWidth: "768px"
+      // maxWidth: "768px"
     }}>
       <IonCardContent class="ion-no-padding">
         <IonList lines="none">
           <IonItem lines="none">
             <IonLabel>
-              <div className=" ion-text-wrap">
+              <div>
                 <p style={{
                   fontSize: "0.9rem",
                   color: "#666",
@@ -62,6 +62,7 @@ const LinkItem = ({ link, index, showCount, url, browser }) => {
                   style={{
                     verticalAlign: "middle",
                   }}
+                  className=" ion-text-wrap"
                 >
                   {link.description}
                 </IonText>
