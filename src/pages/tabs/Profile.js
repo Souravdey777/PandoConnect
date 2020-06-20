@@ -2,7 +2,6 @@ import React from "react";
 import {
   IonPage,
   IonContent,
-  IonCard,
   IonCardContent,
   IonList,
   IonItem,
@@ -12,10 +11,12 @@ import {
   IonButton,
   IonGrid,
   IonAvatar,
+  IonIcon,
 } from "@ionic/react";
 import { toast } from "../../helpers/toast";
 import firebase from "../../firebase";
 import UserContext from "../../contexts/UserContext";
+import { mailOutline } from "ionicons/icons";
 
 const Profile = (props) => {
   const { user } = React.useContext(UserContext);
@@ -38,8 +39,8 @@ const Profile = (props) => {
         {/* <LargeHeader title="Profile" /> */}
         {user ? (
           <>
-            <IonCard style={{
-              background: `linear-gradient(90deg,#00000066,#00000066), url("${user.photoURL}") no-repeat 100% 100%`,
+            <div style={{
+              background: `linear-gradient(90deg,#3377ff66,#3377ff66), url("${user.photoURL}") no-repeat 100% 100%`,
               backgroundSize: "100%",
               height: `${window.innerWidth>424?380:(window.innerWidth - 25)}px`,
               maxWidth: "425px",
@@ -51,11 +52,10 @@ const Profile = (props) => {
                 <IonList lines="none" style={{
                   background: `transparent`
                 }}>
-                  <IonItem style={{ borderRadius: "13px" }} color="primary">
+                  <IonItem style={{ borderRadius: "13px", marginTop:"280px" }} color="primary">
                     <IonAvatar slot="start">
                       <img src={user.photoURL} alt="profile" />
                     </IonAvatar>
-                    {/* <IonIcon icon={personCircleOutline} slot="start"></IonIcon> */}
                     <IonLabel>
                       <strong>{user.displayName}</strong>
                       <p>Motivator</p>
@@ -72,7 +72,7 @@ const Profile = (props) => {
                 </IonList>
                 {/* <p>total post: 10</p> */}
               </IonCardContent>
-            </IonCard>
+            </div>
             {/* <IonRow>
               <IonCol>
                 <IonButton

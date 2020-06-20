@@ -8,19 +8,19 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonButton,
+  // IonButton,
   IonListHeader,
   IonLabel,
   IonAvatar,
   IonList,
   IonItem,
-  IonTextarea,
+  // IonTextarea,
   IonIcon,
   IonInput,
   IonText,
 } from "@ionic/react";
 import NavHeader from "../components/Header/NavHeader";
-import { closeCircleOutline, sendOutline, send, heart } from "ionicons/icons";
+import { closeCircleOutline, send, heart } from "ionicons/icons";
 import LinkItem from "../components/Link/LinkItem";
 import CommentModal from "../components/Link/CommentModal";
 import LinkComment from "../components/Link/LinkComment";

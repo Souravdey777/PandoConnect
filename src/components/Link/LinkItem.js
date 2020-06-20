@@ -3,19 +3,13 @@ import {
   IonCard,
   IonCardContent,
   IonList,
-  IonBadge,
   IonLabel,
   IonIcon,
   IonText,
   IonItem,
-  IonImg,
   IonAvatar,
 } from "@ionic/react";
 import {
-  linkOutline,
-  chevronUpCircleOutline,
-  personCircleOutline,
-  timeOutline,
   chatbubbleEllipsesOutline,
   heart,
   heartOutline,
@@ -28,20 +22,19 @@ import { getTimeAgoString } from "../../dayFormat/dateFormat";
 const LinkItem = ({ link, index, showCount, url, browser }) => {
   // const { user } = React.useContext(UserContext);
   return (
-    <IonCard routerLink={url} onClick={browser} button style={{
+    <IonCard routerLink={url} button style={{
       margin: "5px",
       boxShadow: "rgba(2, 2, 2, 0.1) 0px 2px 10px",
       borderRadius: "13px",
-      // maxWidth: "768px"
     }}>
       <IonCardContent class="ion-no-padding">
+      {link?.pictureURL?<img src={link?.pictureURL} alt="pic"></img>:null}
         <IonList lines="none">
           <IonItem lines="none">
             <IonLabel>
               <div>
                 <p style={{
-                  fontSize: "0.9rem",
-                  color: "#666",
+                  fontSize: "1rem",
                   fontWeight: "normal",
                 }}>{link.url}</p>
               </div>
