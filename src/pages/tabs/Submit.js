@@ -17,6 +17,7 @@ import UserContext from "../../contexts/UserContext";
 import useForm from "../../hooks/useForm";
 import firebase from "../../firebase";
 import validateCreateLink from "../../validators/validateCreateLink";
+import { toast } from "../../helpers/toast";
 
 const INITIAL_STATE = {
   description: "",
@@ -35,17 +36,30 @@ const Submit = (props) => {
   );
 
   function handleUploadStart(event) {
-    setPicture(event.target.files[0]);
+    if (!user) {
+      props.history.push("/login");
+    } else {
+      setpictureURL(null);
+      setPicture(event.target.files[0]);
+    }
   }
 
   async function handleUploadSuccess() {
-    setisUploading(true);
-    try {
-      const url = await firebase.uploadPicture(picture);
-      setpictureURL(url);
-      setisUploading(false);
-    } catch (err) {
-      console.error("Upload Error", err);
+    if (!user) {
+      props.history.push("/login");
+    } 
+    else if(!picture){
+      toast("choose a image to upload first")
+    }
+    else {
+      setisUploading(true);
+      try {
+        const url = await firebase.uploadPicture(picture);
+        setpictureURL(url);
+        setisUploading(false);
+      } catch (err) {
+        console.error("Upload Error", err);
+      }
     }
   };
 
@@ -130,7 +144,7 @@ const Submit = (props) => {
               expand="block"
               fill="outline"
             >
-              <IonLabel style={{ textAlign: "center", maxWidth:"400px" }}>{picture ? picture.name : "Choose file"}</IonLabel>
+              <IonLabel style={{ textAlign: "center", maxWidth: "400px" }}>{picture ? picture.name : "Choose file"}</IonLabel>
               <input style={{ height: "100%", width: "2400px", position: "absolute" }} accept="image/*" onChange={handleUploadStart} type="file" />
             </IonButton>
           </IonCol>

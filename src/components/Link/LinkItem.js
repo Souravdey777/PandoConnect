@@ -24,20 +24,22 @@ const LinkItem = ({ link, index, showCount, url, browser }) => {
   return (
     <IonCard routerLink={url} button style={{
       margin: "5px",
-      boxShadow: "rgba(2, 2, 2, 0.1) 0px 2px 10px",
+      boxShadow: "rgba(2, 2, 2, 0.2) 0px 2px 10px",
       borderRadius: "13px",
     }}>
       <IonCardContent class="ion-no-padding">
-      {link?.pictureURL?<img src={link?.pictureURL} alt="pic"></img>:null}
+      {link?.pictureURL?<img style={{margin:"auto"}} src={link?.pictureURL} alt="pic"></img>:null}
         <IonList lines="none">
           <IonItem lines="none">
             <IonLabel>
-              <div>
                 <p style={{
-                  fontSize: "1rem",
-                  fontWeight: "normal",
-                }}>{link.url}</p>
-              </div>
+                  fontSize: "0.9rem",
+                  fontWeight: "bold",
+                  paddingBottom: "6px"
+                }}><IonText className="ion-text-wrap">
+                  {link.url}
+                  </IonText>
+                  </p>
               <p
                 style={{
                   alignItems: "center",
@@ -55,7 +57,7 @@ const LinkItem = ({ link, index, showCount, url, browser }) => {
                   style={{
                     verticalAlign: "middle",
                   }}
-                  className=" ion-text-wrap"
+                  className="ion-text-wrap"
                 >
                   {link.description}
                 </IonText>

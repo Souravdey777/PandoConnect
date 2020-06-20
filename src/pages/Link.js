@@ -137,7 +137,7 @@ const Link = (props) => {
   return (
     <IonPage>
       <NavHeader
-        title={link && link.description}
+        title={link && link.url}
         option={link && postedByAuthUser(link)}
         icon={closeCircleOutline}
         action={handleDeleteLink}

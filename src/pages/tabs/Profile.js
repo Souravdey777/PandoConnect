@@ -52,7 +52,7 @@ const Profile = (props) => {
                 <IonList lines="none" style={{
                   background: `transparent`
                 }}>
-                  <IonItem style={{ borderRadius: "13px", marginTop:"280px" }} color="primary">
+                  <IonItem style={{ borderRadius: "13px", marginTop:"250px" }} color="primary">
                     <IonAvatar slot="start">
                       <img src={user.photoURL} alt="profile" />
                     </IonAvatar>
