@@ -104,7 +104,7 @@ const Submit = (props) => {
           <IonInput
             name="url"
             value={values.url}
-            type="url"
+            type="text"
             onIonChange={handleChange}
             required
           ></IonInput>
