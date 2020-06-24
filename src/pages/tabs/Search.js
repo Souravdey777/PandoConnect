@@ -2,8 +2,6 @@ import React from "react";
 import { IonSearchbar } from "@ionic/react";
 import firebase from "../../firebase";
 import LinkItem from "../../components/Link/LinkItem";
-// import SmallHeader from "../../components/Header/SmallHeader";
-// import LargeHeader from "../../components/Header/LargeHeader";
 import StackGrid from "react-stack-grid";
 
 const Search = () => {
@@ -53,41 +51,37 @@ const Search = () => {
 
   return (
     <>
-      {/* <SmallHeader title="Search" /> */}
-      {/* <IonContent> */}
-        {/* <LargeHeader title="Search" /> */}
-        <IonSearchbar
-          placeholder="Search"
-          spellcheck="false"
-          type="url"
-          value={filter}
-          onKeyPress={handleChange}
-          animated
-          style={{
-            maxWidth: "425px",
-            margin:"auto"
-            }}
-        />
-        {filter.length>0?(
+      <IonSearchbar
+        placeholder="Search"
+        spellcheck="false"
+        type="url"
+        value={filter}
+        onKeyPress={handleChange}
+        animated
+        style={{
+          maxWidth: "425px",
+          margin: "auto"
+        }}
+      />
+      {filter.length > 0 ? (
         <StackGrid
-        columnWidth={(window.innerWidth>768?(window.innerWidth-60)/4:(window.innerWidth-20)/2)}
-        // gutterWidth={2}
-        duration={500}
-        monitorImagesLoaded={true}
+          columnWidth={(window.innerWidth > 768 ? (window.innerWidth - 60) / 4 : (window.innerWidth - 20) / 2)}
+          duration={500}
+          monitorImagesLoaded={true}
+          appearDelay={1000}
         >
-        {filteredBlogs.map((filteredLink, index) => (
-          <LinkItem
-            key={filteredLink.id}
-            showCount={false}
-            link={filteredLink}
-            index={index}
-            url={`/link/${filteredLink.id}`}
-          />
-        ))}
+          {filteredBlogs.map((filteredLink, index) => (
+            <LinkItem
+              key={filteredLink.id}
+              showCount={false}
+              link={filteredLink}
+              index={index}
+              url={`/link/${filteredLink.id}`}
+            />
+          ))}
         </StackGrid>)
-        :null}
-      {/* </IonContent> */}
-     </>
+        : null}
+    </>
   );
 };
 

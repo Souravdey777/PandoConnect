@@ -37,8 +37,6 @@ const LinkList = (props) => {
     <>
     <StackGrid
         columnWidth={(window.innerWidth>768?(window.innerWidth-60)/4:(window.innerWidth-20)/2)}
-        // gutterWidth={2}
-        // columnWidth={30}
         duration={500}
         monitorImagesLoaded={true}
         appearDelay ={1000}

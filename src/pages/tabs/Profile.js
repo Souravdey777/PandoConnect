@@ -11,12 +11,10 @@ import {
   IonButton,
   IonGrid,
   IonAvatar,
-  IonIcon,
 } from "@ionic/react";
 import { toast } from "../../helpers/toast";
 import firebase from "../../firebase";
 import UserContext from "../../contexts/UserContext";
-import { mailOutline } from "ionicons/icons";
 
 const Profile = (props) => {
   const { user } = React.useContext(UserContext);
@@ -130,8 +128,8 @@ const Profile = (props) => {
               marginTop: "200px",
               maxWidth: "425px",
               }}>
-              {/* <IonRow> */}
-              {/* <IonCol>
+              {/* <IonRow>
+              <IonCol>
                   <IonButton
                     expand="block"
                     routerLink={"/register"}
@@ -139,8 +137,8 @@ const Profile = (props) => {
                   >
                     Sign Up
                 </IonButton>
-                </IonCol> */}
-              {/* </IonRow> */}
+                </IonCol>
+              </IonRow> */}
               <IonRow>
                 <IonCol>
                   <IonButton
