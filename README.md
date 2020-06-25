@@ -1,6 +1,6 @@
 ## PandoConnect
 
-[![HitCount](http://hits.dwyl.com/Souravdey777/Souravdey777/Covid19-InfoBot_FE.svg)](http://hits.dwyl.com/Souravdey777/Souravdey777/Covid19-InfoBot_FE)
+[![HitCount](http://hits.dwyl.com/Souravdey777/PandoConnect.svg)](http://hits.dwyl.com/Souravdey777/PandoConnect)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![GitHub version](https://d25lcipzij17d.cloudfront.net/badge.png?id=gh&v=1.0&style=flat)](https://badge.fury.io/gh/Souravdey777/Covid19-InfoBot_FE)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Souravdey777/News-Bucket/issues)
