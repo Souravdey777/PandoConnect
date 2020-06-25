@@ -8,9 +8,9 @@ import pandoFeeds2 from "./PandoFeeds2.png"
 const PandoFeeds = (props) => {
   return (
     <IonPage>
-    <IonContent fullscreen>
-        <img alt="pandofeedheader" src={window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches?pandoFeeds:pandoFeeds2}>
-          </img>
+      <IonContent fullscreen>
+        <img alt="pandofeedheader" src={window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? pandoFeeds : pandoFeeds2}>
+        </img>
         <Search />
         <LinkList location={props.location} />
       </IonContent>

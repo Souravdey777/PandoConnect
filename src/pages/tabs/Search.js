@@ -75,6 +75,7 @@ const Search = () => {
               key={filteredLink.id}
               showCount={false}
               link={filteredLink}
+              fullblog={false}
               index={index}
               url={`/link/${filteredLink.id}`}
             />

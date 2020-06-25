@@ -48,6 +48,7 @@ const LinkList = (props) => {
           url={`/link/${link.id}`}
           link={link}
           index={index + 1}
+          fullblog={false}
         />
       ))}
       </StackGrid>

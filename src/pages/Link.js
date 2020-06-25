@@ -154,7 +154,8 @@ const Link = (props) => {
             <IonGrid>
               <IonRow>
                 <IonCol class="ion-text-center">
-                  <LinkItem link={link} browser={openBrowser} />
+                  <LinkItem link={link} 
+              fullblog={true} browser={openBrowser} />
                 </IonCol>
               </IonRow>
               <IonRow>
