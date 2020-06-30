@@ -51,7 +51,7 @@ const Login = (props) => {
       <NavHeader title="Log In" />
       <IonLoading message={"Please wait..."} isOpen={busy} />
       <IonContent>
-        <IonItem lines="full"  style={{
+        {/* <IonItem lines="full"  style={{
                   maxWidth: "425px",
                   margin:"auto"
                   }}>
@@ -63,8 +63,8 @@ const Login = (props) => {
             onIonChange={handleChange}
             required
           ></IonInput>
-        </IonItem>
-        <IonItem lines="full"  style={{
+        </IonItem> */}
+        {/* <IonItem lines="full"  style={{
                   maxWidth: "425px",
                   margin:"auto"
                   }}>
@@ -76,8 +76,8 @@ const Login = (props) => {
             onIonChange={handleChange}
             required
           ></IonInput>
-        </IonItem>
-        <IonRow  style={{
+        </IonItem> */}
+        {/* <IonRow  style={{
                   maxWidth: "425px",
                   margin:"auto"
                   }}>
@@ -92,10 +92,11 @@ const Login = (props) => {
               Sign In
             </IonButton>
           </IonCol>
-        </IonRow>
+        </IonRow> */}
         <IonRow style={{
                   maxWidth: "425px",
-                  margin:"auto"
+                  margin:"auto",
+                  marginTop:"300px"
                   }}>
           <IonCol>
             <IonButton
@@ -115,7 +116,7 @@ const Login = (props) => {
                 </IonButton>
           </IonCol>
         </IonRow>
-        <IonRow  style={{
+        {/* <IonRow  style={{
                   maxWidth: "425px",
                   margin:"auto"
                   }}>
@@ -124,7 +125,7 @@ const Login = (props) => {
               Forgot Password?
             </IonRouterLink>
           </IonCol>
-        </IonRow>
+        </IonRow> */}
       </IonContent>
     </IonPage>
   );
