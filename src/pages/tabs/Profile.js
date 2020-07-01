@@ -40,9 +40,9 @@ const Profile = (props) => {
             <div style={{
               background: `linear-gradient(90deg,#3377ff66,#3377ff66), url("${user.photoURL}") no-repeat 100% 100%`,
               backgroundSize: "100%",
-              height: `${window.innerWidth>424?380:(window.innerWidth - 25)}px`,
+              height: `${window.innerWidth > 424 ? 380 : (window.innerWidth - 25)}px`,
               maxWidth: "425px",
-              margin:"auto"
+              margin: "auto"
             }}>
               <IonCardContent style={{
                 background: `transparent`
@@ -50,7 +50,7 @@ const Profile = (props) => {
                 <IonList lines="none" style={{
                   background: `transparent`
                 }}>
-                  <IonItem style={{ borderRadius: "13px", marginTop:"250px" }} color="primary">
+                  <IonItem style={{ borderRadius: "13px", marginTop: "250px" }} color="primary">
                     <IonAvatar slot="start">
                       <img src={user.photoURL} alt="profile" />
                     </IonAvatar>
@@ -84,31 +84,31 @@ const Profile = (props) => {
               </IonCol>
             </IonRow> */}
             <IonRow style={{
-                  maxWidth: "425px",
-                  margin:"auto"
-                  }}>
+              maxWidth: "425px",
+              margin: "auto"
+            }}>
               <IonCol>
-                <IonButton expand="block" 
-                onClick={logoutUser}
-                fill="outline">
+                <IonButton expand="block"
+                  onClick={logoutUser}
+                  fill="outline">
                   Log Out
                 </IonButton>
               </IonCol>
             </IonRow>
-              <IonRow style={{
-                  maxWidth: "425px",
-                  margin:"auto"
-                  }}>
-                <IonCol>
-                  <IonButton
-                    expand="block"
-                    routerLink={"/tips"}
-                    color="primary"
-                  >How it works
+            <IonRow style={{
+              maxWidth: "425px",
+              margin: "auto"
+            }}>
+              <IonCol>
+                <IonButton
+                  expand="block"
+                  routerLink={"/tips"}
+                  color="primary"
+                >How it works
                 </IonButton>
-                </IonCol>
-              </IonRow>
-              <IonRow style={{
+              </IonCol>
+            </IonRow>
+            {/* <IonRow style={{
                   maxWidth: "425px",
                   margin:"auto"
                   }}>
@@ -120,14 +120,14 @@ const Profile = (props) => {
                   >Tips for Covid 19
                 </IonButton>
                 </IonCol>
-              </IonRow>
+              </IonRow> */}
           </>
         ) : (
             <IonGrid style={{
-              margin:"auto",
+              margin: "auto",
               marginTop: "200px",
               maxWidth: "425px",
-              }}>
+            }}>
               {/* <IonRow>
               <IonCol>
                   <IonButton
@@ -149,7 +149,7 @@ const Profile = (props) => {
                 </IonButton>
                 </IonCol>
               </IonRow>
-              <IonRow>
+              {/* <IonRow>
                 <IonCol>
                   <IonButton
                     expand="block"
@@ -158,7 +158,7 @@ const Profile = (props) => {
                   >Tips for Covid 19
                 </IonButton>
                 </IonCol>
-              </IonRow>
+              </IonRow> */}
               <IonRow>
                 <IonCol>
                   <IonButton
