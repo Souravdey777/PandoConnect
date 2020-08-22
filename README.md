@@ -8,7 +8,7 @@
 
 ## PandoConnect won a hackathon in devpost 
 
-[!<img src="./devpostimage.PNG">](https://devpost.com/software/pandoconnect)
+[<img src="./devpostimage.PNG">](https://devpost.com/software/pandoconnect)
 
 ## Description
 
