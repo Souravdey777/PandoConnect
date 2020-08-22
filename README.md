@@ -6,6 +6,10 @@
 [![GitHub version](https://d25lcipzij17d.cloudfront.net/badge.png?id=gh&v=1.0&style=flat)](https://badge.fury.io/gh/Souravdey777/PandoConnect)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Souravdey777/PandoConnect/issues)
 
+## PandoConnect won a hackathon in devpost 
+
+[!<img src="./devpostimage.PNG">](https://devpost.com/software/pandoconnect)
+
 ## Description
 
 The world is now unanimously fighting an invisible enemy, an enemy that cannot be overpowered with any weapon but by collectively staying away from each other. As of today, the number of active cases globally stands somewhere near 3.5 million and if we consider an average of 2 family members for each active patient then the total is about 10 million. These are the minimum count of people who is going through mental stress right now.
