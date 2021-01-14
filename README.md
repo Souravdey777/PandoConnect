@@ -1,5 +1,8 @@
-## PandoConnect
+<p align="center">
+  <img width="200" height="200" style="border-radius:13px" src="./public/assets/icon/PandoConnectLogo.png?raw=true">
+</p>
 
+## PandoConnect
 
 [![HitCount](http://hits.dwyl.com/Souravdey777/PandoConnect.svg)](http://hits.dwyl.com/Souravdey777/PandoConnect)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat)](https://opensource.org/licenses/MIT)
@@ -9,6 +12,8 @@
 ### PandoConnect won a hackathon in devpost 
 
 [<img src="./devpostimage.PNG">](https://devpost.com/software/pandoconnect)
+
+<!--## Slides-->
 
 ## Description
 
