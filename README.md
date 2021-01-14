@@ -6,7 +6,7 @@
 [![GitHub version](https://d25lcipzij17d.cloudfront.net/badge.png?id=gh&v=1.0&style=flat)](https://badge.fury.io/gh/Souravdey777/PandoConnect)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Souravdey777/PandoConnect/issues)
 
-## PandoConnect won a hackathon in devpost 
+### PandoConnect won a hackathon in devpost 
 
 [<img src="./devpostimage.PNG">](https://devpost.com/software/pandoconnect)
 
