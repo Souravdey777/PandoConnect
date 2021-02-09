@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="200" height="200" style="border-radius:13px" src="./public/assets/icon/PandoConnectLogo.png?raw=true">
+  <img width="150" height="150" style="border-radius:13px" src="./public/assets/icon/PandoConnectLogo.png?raw=true">
 </p>
 
 ## PandoConnect
