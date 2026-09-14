@@ -12,6 +12,20 @@ function hash(str) {
   return h;
 }
 
+/**
+ * Pinned cover images for specific posts (matched by title). Takes priority
+ * over the post's own picture. Served from public/, so add the file there.
+ */
+const PINNED_COVERS = {
+  "welcome to pandoconnect": "/assets/hero.png",
+};
+
+export function pinnedCoverFor(link) {
+  if (!link) return null;
+  const title = String(link.url || "").trim().toLowerCase();
+  return PINNED_COVERS[title] || null;
+}
+
 /** A stable decorative photo for a post (always returns a URL). */
 export function picsumFor(link) {
   const id = String((link && (link.id || link.url)) || "pando");
