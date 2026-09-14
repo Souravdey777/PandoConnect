@@ -122,6 +122,7 @@ const Sidebar = () => {
                 className="sidebar__avatar"
                 src={user.photoURL}
                 alt=""
+                referrerPolicy="no-referrer"
               />
               <div className="sidebar__user-meta">
                 <strong>{user.displayName}</strong>

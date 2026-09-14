@@ -182,7 +182,7 @@ const Link = (props) => {
             {user && (
               <div className="comment-box">
                 <IonAvatar className="comment-box__avatar">
-                  <img src={user.photoURL} alt="" />
+                  <img src={user.photoURL} alt="" referrerPolicy="no-referrer" />
                 </IonAvatar>
                 <IonInput
                   className="comment-box__input"

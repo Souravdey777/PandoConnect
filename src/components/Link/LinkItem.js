@@ -77,7 +77,11 @@ const LinkItem = ({ link, index, showCount, url, browser, fullblog }) => {
 
           <div className="link-card__meta">
             <IonAvatar style={{ width: "28px", height: "28px" }}>
-              <img src={link.postedBy.photoURL} alt="" />
+              <img
+                src={link.postedBy.photoURL}
+                alt=""
+                referrerPolicy="no-referrer"
+              />
             </IonAvatar>
             <span className="meta-name">{link.postedBy.name}</span>
             <span className="meta-sep">·</span>

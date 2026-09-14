@@ -45,7 +45,12 @@ const FeedTopBar = () => {
 
       <div className="composer" onClick={compose}>
         {user ? (
-          <img className="composer__avatar" src={user.photoURL} alt="" />
+          <img
+            className="composer__avatar"
+            src={user.photoURL}
+            alt=""
+            referrerPolicy="no-referrer"
+          />
         ) : (
           <span className="composer__avatar composer__avatar--empty" aria-hidden="true" />
         )}

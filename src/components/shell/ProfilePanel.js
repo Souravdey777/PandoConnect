@@ -58,7 +58,12 @@ const ProfilePanel = () => {
       {user ? (
         <div className="pp-card">
           <div className="pp-avatar-wrap">
-            <img className="pp-avatar" src={user.photoURL} alt="" />
+            <img
+              className="pp-avatar"
+              src={user.photoURL}
+              alt=""
+              referrerPolicy="no-referrer"
+            />
             <span className="pp-online" aria-hidden="true" />
           </div>
           <h2 className="pp-name">{user.displayName}</h2>
