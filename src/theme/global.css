@@ -1,0 +1,983 @@
+/* PandoConnect — Global component & layout rules.
+ * Imported after variables.css. Prefer these shared rules over per-element
+ * inline styles so the app stays consistent and re-skinnable.
+ */
+
+/* ---------- Layout ---------- */
+
+/* Single source of truth for the centered page column.
+ * Replaces the repeated inline `maxWidth: 425px; margin: auto`. */
+.app-container {
+  width: 100%;
+  max-width: var(--app-container-width);
+  margin-inline: auto;
+  padding-inline: var(--sp-4);
+  box-sizing: border-box;
+}
+
+.app-stack > * + * {
+  margin-top: var(--sp-3);
+}
+
+/* ---------- Typography ---------- */
+
+.app-display {
+  font-size: var(--app-fs-display);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.app-h1 { font-size: var(--app-fs-h1); line-height: 1.25; font-weight: 700; }
+.app-h2 { font-size: var(--app-fs-h2); line-height: 1.3; font-weight: 600; }
+.app-body { font-size: var(--app-fs-body); line-height: 1.5; font-weight: 400; }
+.app-meta {
+  font-size: var(--app-fs-meta);
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--app-text-muted);
+}
+.app-caption {
+  font-size: var(--app-fs-caption);
+  line-height: 1.33;
+  font-weight: 600;
+}
+.app-muted { color: var(--app-text-muted); }
+
+/* A warm subtitle used under large titles */
+.app-subtitle {
+  font-size: var(--app-fs-meta);
+  color: var(--app-text-muted);
+  font-weight: 600;
+  margin: 0 0 var(--sp-2);
+}
+
+/* ---------- Toolbars / headers ---------- */
+
+ion-toolbar {
+  --background: var(--ion-toolbar-background);
+  --border-width: 0;
+  --border-color: transparent;
+}
+
+/* Large condensed titles on tab pages */
+ion-title.title-large {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Cards ---------- */
+
+ion-card {
+  --background: var(--ion-item-background);
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-elevation);
+  border: 1px solid var(--app-border);
+  overflow: hidden;
+  margin: 0;
+}
+
+ion-card img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Buttons ---------- */
+
+ion-button {
+  --border-radius: var(--app-radius-sm);
+  --box-shadow: none;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  text-transform: none;
+  font-weight: 600;
+  letter-spacing: 0;
+  min-height: 48px;
+}
+
+/* ---------- Items / inputs ---------- */
+
+ion-item {
+  --background: var(--ion-item-background);
+  --border-color: var(--app-border);
+  --highlight-color-focused: var(--ion-color-primary);
+}
+
+/* Grouped form inputs read as one soft card */
+.app-field {
+  --background: var(--app-surface);
+  --border-radius: var(--app-radius-sm);
+  --border-color: var(--app-border);
+  --padding-start: var(--sp-4);
+  margin-bottom: var(--sp-3);
+  border-radius: var(--app-radius-sm);
+  border: 1px solid var(--app-border);
+  background: var(--app-surface);
+}
+
+/* ---------- Searchbar ---------- */
+
+ion-searchbar.app-searchbar {
+  --background: var(--app-surface);
+  --border-radius: 999px;
+  --box-shadow: var(--app-elevation-sm);
+  --placeholder-color: var(--app-text-muted);
+  --icon-color: var(--app-text-muted);
+  padding: 0;
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+/* Inside the feed header the searchbar aligns left with the grid. */
+.feed-header .app-searchbar {
+  margin-inline: 0;
+}
+
+/* ---------- Tab bar ---------- */
+
+ion-tab-bar.app-tab-bar {
+  --background: var(--ion-tab-bar-background);
+  --color: var(--app-text-muted);
+  --color-selected: var(--ion-color-primary);
+  --border: 0;
+  border-radius: 22px 22px 0 0;
+  height: 62px;
+  box-shadow: 0 -2px 16px rgba(22, 35, 59, 0.08);
+  padding-top: 4px;
+}
+
+/* Desktop: keep the bar full-width (Ionic lays it out statically) but pull the
+ * buttons into a centered group so they don't stretch edge-to-edge. */
+@media (min-width: 768px) {
+  ion-tab-bar.app-tab-bar {
+    padding-inline: max(0px, calc((100% - 640px) / 2));
+    border-top: 1px solid var(--app-border);
+  }
+}
+
+ion-tab-button {
+  --padding-top: 6px;
+  --padding-bottom: 6px;
+}
+
+ion-tab-button ion-label {
+  font-size: var(--app-fs-caption);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* ---------- Sentiment badge ---------- */
+
+.sentiment-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: var(--app-fs-caption);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+.sentiment-badge ion-icon { font-size: 13px; }
+.sentiment-badge.is-very-positive { background: var(--app-sentiment-very-positive); }
+.sentiment-badge.is-positive { background: var(--app-sentiment-positive); color: #0e2b20; }
+.sentiment-badge.is-neutral { background: var(--app-sentiment-neutral); color: #2a2109; }
+.sentiment-badge.is-mixed { background: var(--app-sentiment-mixed); }
+
+/* Floating variant, pinned over a card image */
+.card-media {
+  position: relative;
+}
+.card-media .sentiment-badge {
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- Story card internals ---------- */
+
+.link-card {
+  cursor: pointer;
+}
+.link-card__title {
+  font-size: var(--app-fs-h2);
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 var(--sp-2);
+  color: var(--ion-text-color);
+}
+.link-card__desc {
+  font-size: var(--app-fs-body);
+  line-height: 1.5;
+  color: var(--ion-text-color);
+  margin: 0 0 var(--sp-2);
+}
+.link-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--app-fs-meta);
+  color: var(--app-text-muted);
+}
+.link-card__meta .meta-name { font-weight: 700; color: var(--ion-text-color); }
+.link-card__meta .meta-sep { opacity: 0.5; }
+.link-card__stats {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-left: auto;
+}
+.link-card__stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.link-card__stat ion-icon { font-size: var(--app-icon); }
+
+/* ---------- Upvote pill (story detail) ---------- */
+
+.upvote-pill {
+  --border-radius: 999px;
+  --padding-start: 18px;
+  --padding-end: 18px;
+  font-weight: 700;
+}
+
+/* ---------- Empty & skeleton states ---------- */
+
+.empty-state {
+  text-align: center;
+  padding: var(--sp-8) var(--sp-4);
+  color: var(--app-text-muted);
+  max-width: var(--app-container-width);
+  margin-inline: auto;
+}
+.empty-state ion-icon {
+  font-size: 56px;
+  color: var(--ion-color-primary);
+  opacity: 0.85;
+  margin-bottom: var(--sp-3);
+}
+.empty-state h3 {
+  font-size: var(--app-fs-h2);
+  font-weight: 700;
+  color: var(--ion-text-color);
+  margin: 0 0 var(--sp-2);
+}
+.empty-state p {
+  font-size: var(--app-fs-body);
+  margin: 0;
+}
+
+.skeleton-card {
+  background: var(--ion-item-background);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-elevation-sm);
+  overflow: hidden;
+  margin-bottom: var(--sp-3);
+}
+.skeleton-card .sk-media {
+  width: 100%;
+  height: 160px;
+  margin: 0;
+}
+.skeleton-card .sk-body {
+  padding: var(--sp-4);
+}
+
+/* ---------- Auth / welcome card ---------- */
+
+.auth-shell {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--sp-6) var(--sp-4);
+  box-sizing: border-box;
+}
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-elevation);
+  padding: var(--sp-8) var(--sp-6);
+  text-align: center;
+}
+.auth-card__logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  margin: 0 auto var(--sp-4);
+  display: block;
+}
+.auth-card__title {
+  font-size: var(--app-fs-h1);
+  font-weight: 700;
+  margin: 0 0 var(--sp-2);
+}
+.auth-card__tagline {
+  font-size: var(--app-fs-body);
+  color: var(--app-text-muted);
+  margin: 0 0 var(--sp-6);
+}
+.google-btn {
+  --background: var(--app-surface);
+  --background-hover: var(--app-surface-alt);
+  --color: var(--ion-text-color);
+  --border-width: 1px;
+  --border-style: solid;
+  --border-color: var(--app-border);
+}
+.google-btn img { width: 18px; height: 18px; margin-right: 10px; }
+
+/* ---------- Profile header ---------- */
+
+.profile-header {
+  text-align: center;
+  padding: var(--sp-8) var(--sp-4) var(--sp-4);
+}
+.profile-header ion-avatar {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto var(--sp-3);
+  border: 3px solid var(--ion-color-primary);
+}
+.profile-header .profile-name {
+  font-size: var(--app-fs-h1);
+  font-weight: 700;
+  margin: 0;
+}
+.profile-header .profile-role {
+  font-size: var(--app-fs-meta);
+  color: var(--app-text-muted);
+  margin: var(--sp-1) 0 0;
+}
+
+/* ---------- Feed layout ---------- */
+
+/* Shared max content width so the header block and the card grid line up
+ * on desktop instead of drifting apart. */
+:root {
+  --app-content-width: 1120px;
+}
+
+.feed {
+  padding: var(--sp-3) var(--sp-4) var(--sp-8);
+}
+
+/* Header block (subtitle + search) — same width & alignment as the grid. */
+.feed-header {
+  width: 100%;
+  max-width: var(--app-content-width);
+  margin-inline: auto;
+  padding: var(--sp-2) var(--sp-4) 0;
+  box-sizing: border-box;
+}
+
+/* Native, reflowing card grid — replaces react-stack-grid.
+ * One column on phones, more as width allows. No JS width math. */
+.feed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--sp-4);
+  align-items: start;
+  width: 100%;
+  max-width: var(--app-content-width);
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   Three-panel dashboard shell (desktop) — sidebar · feed · profile panel.
+   Mobile keeps the stacked feed + bottom tab bar.
+   ========================================================================== */
+
+.app-shell {
+  height: 100%;
+}
+.app-shell__main {
+  height: 100%;
+  min-width: 0;
+  position: relative;
+}
+
+/* Sidebar & profile panel are desktop-only. */
+.sidebar,
+.profile-panel {
+  display: none;
+}
+
+/* >=1024px: reveal the left rail, drop the mobile tab bar. */
+@media (min-width: 1024px) {
+  .app-shell {
+    display: grid;
+    grid-template-columns: 264px minmax(0, 1fr);
+  }
+  ion-tab-bar.app-tab-bar {
+    display: none !important;
+  }
+  .sidebar {
+    display: flex;
+  }
+}
+
+/* >=1280px: add the right profile panel. */
+@media (min-width: 1280px) {
+  .app-shell {
+    grid-template-columns: 264px minmax(0, 1fr) 340px;
+  }
+  .profile-panel {
+    display: block;
+  }
+}
+
+/* ---------- Sidebar ---------- */
+
+.sidebar {
+  flex-direction: column;
+  height: 100%;
+  padding: 20px 16px;
+  background: var(--ion-item-background);
+  border-right: 1px solid var(--app-border);
+  overflow-y: auto;
+}
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.25rem;
+  padding: 4px 8px 16px;
+}
+.sidebar__brand img {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+}
+.sidebar__search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--app-surface-alt);
+  border: 1px solid var(--app-border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  color: var(--app-text-muted);
+}
+.sidebar__search ion-icon {
+  font-size: 18px;
+}
+.sidebar__search input {
+  border: 0;
+  background: transparent;
+  outline: none;
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  color: var(--ion-text-color);
+}
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  color: var(--app-text-muted);
+  text-align: left;
+  width: 100%;
+  transition: background 0.15s, color 0.15s;
+}
+.sidebar__link ion-icon {
+  font-size: 20px;
+}
+.sidebar__link:hover {
+  background: var(--app-surface-alt);
+  color: var(--ion-text-color);
+}
+.sidebar__link.is-active {
+  background: rgba(var(--ion-color-primary-rgb), 0.12);
+  color: var(--ion-color-primary);
+}
+.sidebar__footer {
+  margin-top: auto;
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.promo-card {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--ion-color-primary-rgb), 0.12),
+    rgba(var(--ion-color-secondary-rgb), 0.12)
+  );
+  border: 1px solid var(--app-border);
+  border-radius: 16px;
+  padding: 16px;
+}
+.promo-card__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: 0;
+  background: transparent;
+  color: var(--app-text-muted);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+.promo-card__icon {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--ion-color-primary);
+  color: var(--ion-color-primary-contrast);
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.promo-card__text {
+  font-size: 0.85rem;
+  color: var(--ion-text-color);
+  margin: 0 0 12px;
+  line-height: 1.4;
+}
+.promo-card__cta {
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  background: var(--ion-color-primary);
+  color: var(--ion-color-primary-contrast);
+  font-weight: 700;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sidebar__user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid var(--app-border);
+}
+.sidebar__avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+}
+.sidebar__user-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  flex: 1;
+  min-width: 0;
+}
+.sidebar__user-meta strong {
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sidebar__user-meta span {
+  font-size: 0.75rem;
+  color: var(--app-text-muted);
+}
+.sidebar__logout {
+  border: 0;
+  background: transparent;
+  color: var(--app-text-muted);
+  cursor: pointer;
+  font-size: 20px;
+  display: inline-flex;
+}
+.sidebar__signin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font: inherit;
+  font-weight: 700;
+  color: var(--ion-color-primary);
+  padding: 10px;
+  width: 100%;
+  border: 1px solid var(--app-border);
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* ---------- Theme toggle ---------- */
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface-alt);
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font: inherit;
+  color: var(--ion-text-color);
+}
+.theme-toggle__icon {
+  display: inline-flex;
+  color: var(--ion-color-primary);
+  font-size: 18px;
+}
+.theme-toggle__label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  flex: 1;
+  text-align: left;
+}
+.theme-toggle__track {
+  width: 38px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--app-border);
+  position: relative;
+  transition: background 0.2s;
+  flex: none;
+}
+.theme-toggle__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+.theme-toggle.is-dark .theme-toggle__track {
+  background: var(--ion-color-primary);
+}
+.theme-toggle.is-dark .theme-toggle__thumb {
+  transform: translateX(16px);
+}
+.theme-toggle--icon {
+  width: auto;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+/* ---------- Feed top bar (segment + composer) ---------- */
+
+.feed-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--ion-background-color);
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid var(--app-border);
+}
+.feed-topbar__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: var(--app-content-width);
+  margin-inline: auto;
+}
+.feed-topbar__row .segment {
+  flex: 1;
+  margin-inline: 0;
+}
+.feed-topbar__row .theme-toggle--icon {
+  flex: none;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface-alt);
+  color: var(--ion-text-color);
+}
+.theme-toggle--icon ion-icon {
+  font-size: 20px;
+  display: block;
+}
+.segment {
+  display: flex;
+  gap: 4px;
+  background: var(--app-surface-alt);
+  border-radius: 12px;
+  padding: 4px;
+  max-width: var(--app-content-width);
+  margin-inline: auto;
+}
+.segment__btn {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  padding: 10px;
+  border-radius: 9px;
+  font: inherit;
+  font-weight: 700;
+  color: var(--app-text-muted);
+  cursor: pointer;
+}
+.segment__btn.is-active {
+  background: var(--ion-item-background);
+  color: var(--ion-color-primary);
+  box-shadow: var(--app-elevation-sm);
+}
+.composer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--ion-item-background);
+  border: 1px solid var(--app-border);
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin: 12px auto 0;
+  cursor: pointer;
+  box-shadow: var(--app-elevation-sm);
+  max-width: var(--app-content-width);
+}
+.composer__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+}
+.composer__avatar--empty {
+  background: var(--app-surface-alt);
+}
+.composer__placeholder {
+  flex: 1;
+  color: var(--app-text-muted);
+  font-weight: 500;
+}
+.composer__actions {
+  display: flex;
+  gap: 10px;
+  color: var(--app-text-muted);
+  font-size: 20px;
+}
+.composer__post {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ion-color-primary);
+  color: var(--ion-color-primary-contrast);
+  font-weight: 700;
+  padding: 9px 16px;
+  cursor: pointer;
+}
+.composer__post ion-icon {
+  font-size: 15px;
+}
+
+/* Hide the composer's secondary actions on small screens. */
+@media (max-width: 520px) {
+  .composer__actions {
+    display: none;
+  }
+}
+
+/* ---------- Profile panel ---------- */
+
+.profile-panel {
+  height: 100%;
+  overflow-y: auto;
+  padding: 20px 16px;
+  background: var(--ion-item-background);
+  border-left: 1px solid var(--app-border);
+}
+.pp-card {
+  text-align: center;
+  padding: 8px 8px 16px;
+  border-bottom: 1px solid var(--app-border);
+  margin-bottom: 16px;
+}
+.pp-avatar-wrap {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 12px;
+}
+.pp-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--ion-color-primary);
+}
+.pp-online {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ion-color-success);
+  border: 3px solid var(--ion-item-background);
+}
+.pp-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  margin: 0 auto 12px;
+  display: block;
+}
+.pp-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0;
+}
+.pp-handle {
+  color: var(--ion-color-primary);
+  font-weight: 600;
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+}
+.pp-sub {
+  color: var(--app-text-muted);
+  font-size: 0.85rem;
+  margin: 4px 0 0;
+}
+.pp-stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 16px 0;
+}
+.pp-stats div {
+  display: flex;
+  flex-direction: column;
+}
+.pp-stats strong {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+.pp-stats span {
+  font-size: 0.75rem;
+  color: var(--app-text-muted);
+}
+.pp-primary {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  background: var(--ion-color-primary);
+  color: var(--ion-color-primary-contrast);
+  font-weight: 700;
+  padding: 12px;
+  cursor: pointer;
+}
+.pp-section {
+  margin-bottom: 20px;
+}
+.pp-section__title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin: 0 0 10px;
+}
+.pp-about {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--app-text-muted);
+  margin: 0;
+}
+.pp-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pp-chip {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ion-color-primary);
+  background: rgba(var(--ion-color-primary-rgb), 0.1);
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+.pp-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--ion-text-color);
+}
+.pp-link:hover {
+  background: var(--app-surface-alt);
+}
+.pp-link__icon {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--app-surface-alt);
+  color: var(--ion-color-primary);
+  font-size: 18px;
+  flex: none;
+}
+.pp-link__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.pp-link__body strong {
+  font-size: 0.85rem;
+}
+.pp-link__body span {
+  font-size: 0.75rem;
+  color: var(--app-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pp-link__ext {
+  color: var(--app-text-muted);
+  font-size: 16px;
+}
+.pp-foot {
+  font-size: 0.75rem;
+  color: var(--app-text-muted);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.pp-foot ion-icon {
+  vertical-align: middle;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

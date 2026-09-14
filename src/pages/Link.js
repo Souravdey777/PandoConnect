@@ -5,22 +5,23 @@ import UserContext from "../contexts/UserContext";
 import {
   IonPage,
   IonContent,
-  IonGrid,
-  IonRow,
-  IonCol,
-  // IonButton,
+  IonButton,
   IonListHeader,
   IonLabel,
   IonAvatar,
   IonList,
   IonItem,
-  // IonTextarea,
   IonIcon,
   IonInput,
-  IonText,
 } from "@ionic/react";
 import NavHeader from "../components/Header/NavHeader";
-import { closeCircleOutline, send, heart } from "ionicons/icons";
+import {
+  closeCircleOutline,
+  send,
+  heart,
+  heartOutline,
+  chatbubbleEllipsesOutline,
+} from "ionicons/icons";
 import LinkItem from "../components/Link/LinkItem";
 import CommentModal from "../components/Link/CommentModal";
 import LinkComment from "../components/Link/LinkComment";
@@ -134,6 +135,12 @@ const Link = (props) => {
     });
   }
 
+  const hasVoted =
+    link &&
+    user &&
+    Array.isArray(link.votes) &&
+    link.votes.some((v) => v.votedBy && v.votedBy.id === user.uid);
+
   return (
     <IonPage>
       <NavHeader
@@ -151,35 +158,33 @@ const Link = (props) => {
         />
         {link && (
           <>
-            <IonGrid>
-              <IonRow>
-                <IonCol class="ion-text-center">
-                  <LinkItem link={link} 
-              fullblog={true} browser={openBrowser} />
-                </IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol>
-                  <IonLabel style={{ margin: "10px" }} onClick={() => handleAddVote()} size="small">
-                    <IonIcon
-                      icon={heart}
-                      style={{
-                        verticalAlign: "middle",
-                      }}
-                    />{" "}
-                    <IonText
-                      style={{
-                        verticalAlign: "middle",
-                      }}
-                    >
-                      upvote
-                    </IonText>
-                  </IonLabel>
-                </IonCol>
-              </IonRow>
-            </IonGrid>
+            <div className="app-container" style={{ paddingTop: "12px" }}>
+              <LinkItem link={link} fullblog={true} browser={openBrowser} />
+              <div style={{ marginTop: "12px" }}>
+                <IonButton
+                  className="upvote-pill"
+                  fill={hasVoted ? "solid" : "outline"}
+                  color="secondary"
+                  onClick={() => handleAddVote()}
+                  aria-label={`Upvote this story. ${link.voteCount || 0} upvotes`}
+                >
+                  <IonIcon
+                    slot="start"
+                    icon={hasVoted ? heart : heartOutline}
+                    aria-hidden="true"
+                  />
+                  {link.voteCount > 0 ? `${link.voteCount} upvotes` : "Upvote"}
+                </IonButton>
+              </div>
+            </div>
             <IonListHeader>
-                    <h3>{link.comments.length>0?"Comments":"No Comments"}</h3>
+              <IonLabel>
+                <h3 className="app-h2">
+                  {link.comments.length > 0
+                    ? `Comments (${link.comments.length})`
+                    : "Comments"}
+                </h3>
+              </IonLabel>
             </IonListHeader>
             {user && <IonList>
               <IonItem>
@@ -201,14 +206,22 @@ const Link = (props) => {
               </IonItem>
             </IonList>}
             <IonContent>
-              {link.comments.map((comment, index) => (
-                <LinkComment
-                  key={index}
-                  comment={comment}
-                  link={link}
-                  setLink={setLink}
-                />
-              ))}
+              {link.comments.length > 0 ? (
+                link.comments.map((comment, index) => (
+                  <LinkComment
+                    key={index}
+                    comment={comment}
+                    link={link}
+                    setLink={setLink}
+                  />
+                ))
+              ) : (
+                <div className="empty-state">
+                  <IonIcon icon={chatbubbleEllipsesOutline} />
+                  <h3>No comments yet</h3>
+                  <p>Share a kind word or your own experience.</p>
+                </div>
+              )}
             </IonContent>
           </>
         )}

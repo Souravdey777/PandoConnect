@@ -1,8 +1,8 @@
 import React from "react";
-import { IonSearchbar } from "@ionic/react";
+import { IonSearchbar, IonIcon } from "@ionic/react";
+import { searchOutline } from "ionicons/icons";
 import firebase from "../../firebase";
 import LinkItem from "../../components/Link/LinkItem";
-import StackGrid from "react-stack-grid";
 
 const Search = () => {
   const [blogs, setBlogs] = React.useState([]);
@@ -52,36 +52,39 @@ const Search = () => {
   return (
     <>
       <IonSearchbar
-        placeholder="Search"
+        className="app-searchbar"
+        placeholder="Search stories, people…"
         spellcheck="false"
-        type="url"
+        type="text"
+        inputmode="search"
         value={filter}
         onKeyPress={handleChange}
+        onIonClear={() => setFilter("")}
         animated
-        style={{
-          maxWidth: "425px",
-          margin: "auto"
-        }}
       />
-      {filter.length > 0 ? (
-        <StackGrid
-          columnWidth={(window.innerWidth > 768 ? (window.innerWidth - 60) / 4 : (window.innerWidth - 20) / 2)}
-          duration={500}
-          monitorImagesLoaded={true}
-          appearDelay={1000}
-        >
-          {filteredBlogs.map((filteredLink, index) => (
-            <LinkItem
-              key={filteredLink.id}
-              showCount={false}
-              link={filteredLink}
-              fullblog={false}
-              index={index}
-              url={`/link/${filteredLink.id}`}
-            />
-          ))}
-        </StackGrid>)
-        : null}
+      {filter.length > 0 &&
+        (filteredBlogs.length > 0 ? (
+          <div className="feed">
+            <div className="feed-grid">
+              {filteredBlogs.map((filteredLink, index) => (
+                <LinkItem
+                  key={filteredLink.id}
+                  showCount={false}
+                  link={filteredLink}
+                  fullblog={false}
+                  index={index}
+                  url={`/link/${filteredLink.id}`}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="empty-state">
+            <IonIcon icon={searchOutline} />
+            <h3>No matches</h3>
+            <p>Try a different word, name, or phrase.</p>
+          </div>
+        ))}
     </>
   );
 };

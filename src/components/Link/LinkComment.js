@@ -3,19 +3,15 @@ import UserContext from "../../contexts/UserContext";
 import firebase from "../../firebase";
 import CommentModal from "./CommentModal";
 import {
-  // IonCard,
-  // IonCardContent,
   IonList,
   IonItem,
   IonLabel,
   IonButton,
-  // IonListHeader,
+  IonIcon,
   IonAvatar,
-  // IonIcon,
 } from "@ionic/react";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { getTimeAgoString } from "../../dayFormat/dateFormat";
-// import { personCircleOutline } from "ionicons/icons";
+import { createOutline, trashOutline } from "ionicons/icons";
 
 const LinkComment = ({ comment, link, setLink }) => {
   const { user } = React.useContext(UserContext);
@@ -91,31 +87,37 @@ const LinkComment = ({ comment, link, setLink }) => {
               alt="profile"
             />
           </IonAvatar>
-          <IonLabel>
-            <h3>{comment.postedBy.name}</h3>
-            <p>{comment.text}</p>
-            <p style={{
-              verticalAlign: "middle",
-              fontSize: "0.7rem",
-              color: "#999",
-              fontWeight: "normal"
-            }}
-            >
-              {getTimeAgoString(comment.created)}</p>
+          <IonLabel className="ion-text-wrap">
+            <h3 style={{ fontWeight: 700 }}>{comment.postedBy.name}</h3>
+            <p className="app-body" style={{ whiteSpace: "normal" }}>
+              {comment.text}
+            </p>
+            <p className="app-caption app-muted">
+              {getTimeAgoString(comment.created)}
+            </p>
             {postedByAuthUser && (
-              <IonButton size="small" onClick={() => setShowModal(true)}>
-                Edit
-              </IonButton>
+              <div style={{ display: "flex", gap: "4px", marginTop: "4px" }}>
+                <IonButton
+                  size="small"
+                  fill="clear"
+                  onClick={() => setShowModal(true)}
+                  aria-label="Edit comment"
+                >
+                  <IonIcon slot="start" icon={createOutline} />
+                  Edit
+                </IonButton>
+                <IonButton
+                  size="small"
+                  fill="clear"
+                  color="danger"
+                  onClick={() => handleDeleteComment(comment)}
+                  aria-label="Delete comment"
+                >
+                  <IonIcon slot="start" icon={trashOutline} />
+                  Delete
+                </IonButton>
+              </div>
             )}
-            {postedByAuthUser && (
-              <IonButton
-                size="small"
-                onClick={() => handleDeleteComment(comment)}
-              >
-                Delete
-              </IonButton>
-            )}
-
           </IonLabel>
         </IonItem>
       </IonList>

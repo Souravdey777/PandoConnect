@@ -29,6 +29,8 @@ import Forgot from "./pages/auth/Forgot";
 import Link from "./pages/Link";
 import useAuth from "./hooks/useAuth";
 import UserContext from "./contexts/UserContext";
+import Sidebar from "./components/shell/Sidebar";
+import ProfilePanel from "./components/shell/ProfilePanel";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -46,8 +48,9 @@ import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
-/* Theme variables */
+/* Theme variables + global component rules */
 import "./theme/variables.css";
+import "./theme/global.css";
 import Tips from "./pages/tips";
 
 const App = () => {
@@ -57,6 +60,9 @@ const App = () => {
     <IonApp>
       <IonReactRouter>
         <UserContext.Provider value={{ user, setUser }}>
+          <div className="app-shell">
+            <Sidebar />
+            <div className="app-shell__main">
         <IonTabs>
             <IonRouterOutlet>
               <Route
@@ -76,11 +82,7 @@ const App = () => {
               <Route path="/link/:linkId" component={Link} />
               <Route component={() => <Redirect to="/pandofeeds" />} />
             </IonRouterOutlet>
-            <IonTabBar slot="bottom" style={{
-              borderRadius: "30px 30px 0px 0px",
-              height: "60px",
-              boxShadow: "rgba(2, 2, 2, 0.1) 0px 2px 10px",
-            }}>
+            <IonTabBar slot="bottom" className="app-tab-bar">
               <IonTabButton tab="pandofeeds" href="/pandofeeds">
                 <IonIcon icon={newspaperOutline} />
                 <IonLabel>PandoFeed</IonLabel>
@@ -99,6 +101,9 @@ const App = () => {
               </IonTabButton>
             </IonTabBar>
           </IonTabs>
+            </div>
+            <ProfilePanel />
+          </div>
         </UserContext.Provider>
       </IonReactRouter>
     </IonApp>
