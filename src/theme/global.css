@@ -192,8 +192,8 @@ ion-tab-button ion-label {
 }
 .card-media img {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   display: block;
 }
 .card-media .sentiment-badge {
@@ -297,6 +297,77 @@ ion-tab-button ion-label {
 }
 .skeleton-card .sk-body {
   padding: 0 16px;
+}
+
+/* ---------- How it works ---------- */
+
+.howto {
+  max-width: 620px;
+  margin-inline: auto;
+  padding: 16px 16px 32px;
+}
+.howto__hero {
+  width: 100%;
+  height: auto;
+  border-radius: var(--app-radius);
+  display: block;
+  margin-bottom: 20px;
+}
+.howto__title {
+  font-size: var(--app-fs-h1);
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+.howto__lead {
+  font-size: var(--app-fs-body);
+  color: var(--app-text-muted);
+  margin: 0 0 20px;
+}
+.howto__steps {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.howto-step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--ion-item-background);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  padding: 16px;
+}
+.howto-step__badge {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--ion-color-primary-rgb), 0.12);
+  color: var(--ion-color-primary);
+  font-size: 22px;
+}
+.howto-step__body {
+  min-width: 0;
+}
+.howto-step__title {
+  font-size: var(--app-fs-h2);
+  font-weight: 700;
+  margin: 2px 0 4px;
+}
+.howto-step__num {
+  color: var(--ion-color-primary);
+}
+.howto-step__text {
+  font-size: var(--app-fs-body);
+  line-height: 1.5;
+  color: var(--app-text-muted);
+  margin: 0;
 }
 
 /* ---------- Single post (detail) ---------- */

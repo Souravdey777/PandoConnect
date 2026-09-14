@@ -85,6 +85,7 @@ const LinkComment = ({ comment, link, setLink }) => {
                 verticalAlign: "middle",
               }}
               alt="profile"
+              referrerPolicy="no-referrer"
             />
           </IonAvatar>
           <IonLabel className="ion-text-wrap">

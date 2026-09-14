@@ -14,11 +14,11 @@ import {
 } from "ionicons/icons";
 import { getTimeAgoString } from "../../dayFormat/dateFormat";
 import { resolveSentiment } from "../../helpers/sentiment";
-import { coverImageFor, picsumFor } from "../../helpers/coverImage";
+import { coverImageFor, picsumFor, pinnedCoverFor } from "../../helpers/coverImage";
 
 const LinkItem = ({ link, index, showCount, url, browser, fullblog }) => {
   const sentiment = resolveSentiment(link);
-  const cover = link?.pictureURL || coverImageFor(link);
+  const cover = pinnedCoverFor(link) || link?.pictureURL || coverImageFor(link);
 
   // If a post's own image is broken/missing, fall back to a decorative cover
   // once; only hide the media if that fallback also fails.
@@ -77,7 +77,11 @@ const LinkItem = ({ link, index, showCount, url, browser, fullblog }) => {
 
           <div className="link-card__meta">
             <IonAvatar style={{ width: "28px", height: "28px" }}>
-              <img src={link.postedBy.photoURL} alt="" />
+              <img
+                src={link.postedBy.photoURL}
+                alt=""
+                referrerPolicy="no-referrer"
+              />
             </IonAvatar>
             <span className="meta-name">{link.postedBy.name}</span>
             <span className="meta-sep">·</span>
