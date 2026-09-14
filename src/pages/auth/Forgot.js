@@ -5,8 +5,6 @@ import {
   IonItem,
   IonLabel,
   IonInput,
-  IonRow,
-  IonCol,
   IonButton,
   IonLoading,
 } from "@ionic/react";
@@ -43,32 +41,34 @@ const Forgot = () => {
 
   return (
     <IonPage>
-      <NavHeader title="Password Reset" />
-      <IonLoading message={"Please wait..."} isOpen={busy} />
+      <NavHeader title="Password reset" />
+      <IonLoading message={"Please wait…"} isOpen={busy} />
       <IonContent>
-        <IonItem lines="full">
-          <IonLabel position="floating">Email</IonLabel>
-          <IonInput
-            name="email"
-            type="text"
-            value={values.email}
-            onIonChange={handleChange}
-            required
-          ></IonInput>
-        </IonItem>
-        <IonRow>
-          <IonCol>
-            <IonButton
-              type="submit"
-              color="primary"
-              expand="block"
-              onClick={handleSubmit}
-              disabled={isSubmitting}
-            >
-              Get Reset Link
-            </IonButton>
-          </IonCol>
-        </IonRow>
+        <div className="app-container app-stack" style={{ paddingTop: "24px" }}>
+          <h2 className="app-h1">Reset your password</h2>
+          <p className="app-subtitle">
+            We&apos;ll email you a link to set a new password.
+          </p>
+          <IonItem className="app-field" lines="none">
+            <IonLabel position="floating">Email</IonLabel>
+            <IonInput
+              name="email"
+              type="email"
+              inputmode="email"
+              value={values.email}
+              onIonChange={handleChange}
+              required
+            ></IonInput>
+          </IonItem>
+          <IonButton
+            expand="block"
+            color="primary"
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+          >
+            Get reset link
+          </IonButton>
+        </div>
       </IonContent>
     </IonPage>
   );

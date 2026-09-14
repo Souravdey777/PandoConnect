@@ -2,19 +2,25 @@ import React from "react";
 import {
   IonPage,
   IonContent,
-  IonCardContent,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
   IonList,
   IonItem,
   IonLabel,
-  IonRow,
-  IonCol,
   IonButton,
-  IonGrid,
   IonAvatar,
+  IonIcon,
 } from "@ionic/react";
+import {
+  logOutOutline,
+  informationCircleOutline,
+  heartOutline,
+} from "ionicons/icons";
 import { toast } from "../../helpers/toast";
 import firebase from "../../firebase";
 import UserContext from "../../contexts/UserContext";
+import ThemeToggle from "../../components/shell/ThemeToggle";
 
 const Profile = (props) => {
   const { user } = React.useContext(UserContext);
@@ -31,148 +37,81 @@ const Profile = (props) => {
   }
 
   return (
-    <IonPage >
-      {/* <SmallHeader title="Profile" /> */}
-      <IonContent fullscreen >
-        {/* <LargeHeader title="Profile" /> */}
-        {user ? (
-          <>
-            <div style={{
-              background: `linear-gradient(90deg,#3377ff66,#3377ff66), url("${user.photoURL}") no-repeat 100% 100%`,
-              backgroundSize: "100%",
-              height: `${window.innerWidth > 424 ? 380 : (window.innerWidth - 25)}px`,
-              maxWidth: "425px",
-              margin: "auto"
-            }}>
-              <IonCardContent style={{
-                background: `transparent`
-              }}>
-                <IonList lines="none" style={{
-                  background: `transparent`
-                }}>
-                  <IonItem style={{ borderRadius: "13px", marginTop: "250px" }} color="primary">
-                    <IonAvatar slot="start">
-                      <img src={user.photoURL} alt="profile" />
-                    </IonAvatar>
-                    <IonLabel>
-                      <strong>{user.displayName}</strong>
-                      <p>Motivator</p>
-                    </IonLabel>
-                  </IonItem>
+    <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Profile</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent fullscreen>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large">Profile</IonTitle>
+          </IonToolbar>
+        </IonHeader>
 
-                  {/* <IonItem>
-                    <IonIcon icon={mailOutline} slot="start"></IonIcon>
-                    <IonLabel>
-                      <strong>{user.email}</strong>
-                      <p>Email</p>
-                    </IonLabel>
-                  </IonItem> */}
-                </IonList>
-                {/* <p>total post: 10</p> */}
-              </IonCardContent>
+        {user ? (
+          <div className="app-container">
+            <div className="profile-header">
+              <IonAvatar>
+                <img src={user.photoURL} alt="" />
+              </IonAvatar>
+              <h2 className="profile-name">{user.displayName}</h2>
+              {user.email && <p className="profile-role">{user.email}</p>}
             </div>
-            {/* <IonRow>
-              <IonCol>
-                <IonButton
-                  expand="block"
-                  routerLink={"/edit-profile"}
-                  color="primary"
-                  fill="outline"
-                >
-                  Edit Profile
-                </IonButton>
-              </IonCol>
-            </IonRow> */}
-            <IonRow style={{
-              maxWidth: "425px",
-              margin: "auto"
-            }}>
-              <IonCol>
-                <IonButton expand="block"
-                  onClick={logoutUser}
-                  fill="outline">
-                  Log Out
-                </IonButton>
-              </IonCol>
-            </IonRow>
-            <IonRow style={{
-              maxWidth: "425px",
-              margin: "auto"
-            }}>
-              <IonCol>
-                <IonButton
-                  expand="block"
-                  routerLink={"/tips"}
-                  color="primary"
-                >How it works
-                </IonButton>
-              </IonCol>
-            </IonRow>
-            {/* <IonRow style={{
-                  maxWidth: "425px",
-                  margin:"auto"
-                  }}>
-                <IonCol>
-                  <IonButton
-                    expand="block"
-                    routerLink={"/tips"}
-                    color="primary"
-                  >Tips for Covid 19
-                </IonButton>
-                </IonCol>
-              </IonRow> */}
-          </>
+
+            <div style={{ padding: "0 16px 16px" }}>
+              <ThemeToggle />
+            </div>
+
+            <IonList inset lines="full" style={{ borderRadius: "var(--app-radius)" }}>
+              <IonItem button routerLink="/tips" detail>
+                <IonIcon slot="start" icon={informationCircleOutline} color="primary" />
+                <IonLabel>How it works</IonLabel>
+              </IonItem>
+              <IonItem
+                button
+                onClick={logoutUser}
+                detail={false}
+                lines="none"
+              >
+                <IonIcon slot="start" icon={logOutOutline} color="danger" />
+                <IonLabel color="danger">Log out</IonLabel>
+              </IonItem>
+            </IonList>
+          </div>
         ) : (
-            <IonGrid style={{
-              margin: "auto",
-              marginTop: "200px",
-              maxWidth: "425px",
-            }}>
-              {/* <IonRow>
-              <IonCol>
-                  <IonButton
-                    expand="block"
-                    routerLink={"/register"}
-                    color="primary"
-                  >
-                    Sign Up
-                </IonButton>
-                </IonCol>
-              </IonRow> */}
-              <IonRow>
-                <IonCol>
-                  <IonButton
-                    expand="block"
-                    routerLink={"/tips"}
-                    color="primary"
-                  >How it works
-                </IonButton>
-                </IonCol>
-              </IonRow>
-              {/* <IonRow>
-                <IonCol>
-                  <IonButton
-                    expand="block"
-                    routerLink={"/tips"}
-                    color="primary"
-                  >Tips for Covid 19
-                </IonButton>
-                </IonCol>
-              </IonRow> */}
-              <IonRow>
-                <IonCol>
-                  <IonButton
-                    expand="block"
-                    routerLink={"/login"}
-                    color="primary"
-                    fill="outline"
-                  >
-                    Sign In
-                </IonButton>
-                </IonCol>
-              </IonRow>
-            </IonGrid>
-          )}
+          <div className="auth-shell">
+            <div className="auth-card">
+              <img
+                className="auth-card__logo"
+                src="/assets/icon/PandoConnectLogo.png"
+                alt="PandoConnect"
+              />
+              <IonIcon
+                icon={heartOutline}
+                color="secondary"
+                style={{ fontSize: "24px", marginBottom: "8px" }}
+              />
+              <h2 className="auth-card__title">Welcome to PandoConnect</h2>
+              <p className="auth-card__tagline">
+                Join a global community sharing stories of recovery, hope, and
+                support.
+              </p>
+              <IonButton
+                expand="block"
+                routerLink="/login"
+                color="primary"
+                style={{ marginBottom: "12px" }}
+              >
+                Sign in
+              </IonButton>
+              <IonButton expand="block" fill="clear" routerLink="/tips">
+                How it works
+              </IonButton>
+            </div>
+          </div>
+        )}
       </IonContent>
     </IonPage>
   );

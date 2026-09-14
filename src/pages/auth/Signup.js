@@ -5,8 +5,6 @@ import {
   IonItem,
   IonLabel,
   IonInput,
-  IonRow,
-  IonCol,
   IonButton,
   IonLoading,
 } from "@ionic/react";
@@ -46,52 +44,51 @@ const Signup = (props) => {
 
   return (
     <IonPage>
-      <NavHeader title="Sign Up" />
-      <IonLoading message={"Please wait..."} isOpen={busy} />
+      <NavHeader title="Sign up" />
+      <IonLoading message={"Please wait…"} isOpen={busy} />
       <IonContent>
-        <IonItem lines="full">
-          <IonLabel position="floating">Username</IonLabel>
-          <IonInput
-            name="name"
-            type="text"
-            value={values.name}
-            onIonChange={handleChange}
-            required
-          ></IonInput>
-        </IonItem>
-        <IonItem lines="full">
-          <IonLabel position="floating">Email</IonLabel>
-          <IonInput
-            name="email"
-            type="text"
-            value={values.email}
-            onIonChange={handleChange}
-            required
-          ></IonInput>
-        </IonItem>
-        <IonItem lines="full">
-          <IonLabel position="floating">Password</IonLabel>
-          <IonInput
-            name="password"
-            type="password"
-            value={values.password}
-            onIonChange={handleChange}
-            required
-          ></IonInput>
-        </IonItem>
-        <IonRow>
-          <IonCol>
-            <IonButton
-              type="submit"
-              color="primary"
-              expand="block"
-              onClick={handleSubmit}
-              disabled={isSubmitting}
-            >
-              Sign Up
-            </IonButton>
-          </IonCol>
-        </IonRow>
+        <div className="app-container app-stack" style={{ paddingTop: "24px" }}>
+          <h2 className="app-h1">Create your account</h2>
+          <IonItem className="app-field" lines="none">
+            <IonLabel position="floating">Username</IonLabel>
+            <IonInput
+              name="name"
+              type="text"
+              value={values.name}
+              onIonChange={handleChange}
+              required
+            ></IonInput>
+          </IonItem>
+          <IonItem className="app-field" lines="none">
+            <IonLabel position="floating">Email</IonLabel>
+            <IonInput
+              name="email"
+              type="email"
+              inputmode="email"
+              value={values.email}
+              onIonChange={handleChange}
+              required
+            ></IonInput>
+          </IonItem>
+          <IonItem className="app-field" lines="none">
+            <IonLabel position="floating">Password</IonLabel>
+            <IonInput
+              name="password"
+              type="password"
+              value={values.password}
+              onIonChange={handleChange}
+              required
+            ></IonInput>
+          </IonItem>
+          <IonButton
+            expand="block"
+            color="primary"
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+          >
+            Sign up
+          </IonButton>
+        </div>
       </IonContent>
     </IonPage>
   );

@@ -9,8 +9,6 @@ import {
   IonItem,
   IonLabel,
   IonInput,
-  IonRow,
-  IonCol,
   IonButton,
 } from "@ionic/react";
 import NavHeader from "../../components/Header/NavHeader";
@@ -86,66 +84,64 @@ const EditProfile = (props) => {
 
   return (
     <IonPage>
-      <NavHeader title="Edit Profile" />
-      <IonLoading message={"Please wait..."} isOpen={busy} />
+      <NavHeader title="Edit profile" />
+      <IonLoading message={"Please wait…"} isOpen={busy} />
       <IonContent>
-        <IonItem lines="full">
-          <IonLabel position="floating">Username</IonLabel>
-          <IonInput
-            name="name"
-            type="text"
-            value={values.name}
-            onIonChange={handleChange}
-            required
-          ></IonInput>
-        </IonItem>
+        <div className="app-container app-stack" style={{ paddingTop: "24px" }}>
+          <IonItem className="app-field" lines="none">
+            <IonLabel position="floating">Username</IonLabel>
+            <IonInput
+              name="name"
+              type="text"
+              value={values.name}
+              onIonChange={handleChange}
+              required
+            ></IonInput>
+          </IonItem>
 
-        <IonItem lines="full">
-          <IonLabel position="floating">Email</IonLabel>
-          <IonInput
-            name="email"
-            type="text"
-            value={values.email}
-            onIonChange={handleChange}
-            required
-          ></IonInput>
-        </IonItem>
+          <IonItem className="app-field" lines="none">
+            <IonLabel position="floating">Email</IonLabel>
+            <IonInput
+              name="email"
+              type="email"
+              inputmode="email"
+              value={values.email}
+              onIonChange={handleChange}
+              required
+            ></IonInput>
+          </IonItem>
 
-        <IonItem lines="full">
-          <IonLabel position="floating">New Password</IonLabel>
-          <IonInput
-            name="newPassword"
-            type="password"
-            value={values.newPassword}
-            onIonChange={handleChange}
-            required
-          ></IonInput>
-        </IonItem>
+          <IonItem className="app-field" lines="none">
+            <IonLabel position="floating">New password</IonLabel>
+            <IonInput
+              name="newPassword"
+              type="password"
+              value={values.newPassword}
+              onIonChange={handleChange}
+              required
+            ></IonInput>
+          </IonItem>
 
-        <IonItem lines="full">
-          <IonLabel position="floating">Current Password</IonLabel>
-          <IonInput
-            name="currentPassword"
-            type="password"
-            value={values.currentPassword}
-            onIonChange={handleChange}
-            required
-          ></IonInput>
-        </IonItem>
+          <IonItem className="app-field" lines="none">
+            <IonLabel position="floating">Current password</IonLabel>
+            <IonInput
+              name="currentPassword"
+              type="password"
+              value={values.currentPassword}
+              onIonChange={handleChange}
+              required
+            ></IonInput>
+          </IonItem>
 
-        <IonRow>
-          <IonCol>
-            <IonButton
-              type="submit"
-              color="primary"
-              expand="block"
-              onClick={handleSubmit}
-              disabled={isSubmitting}
-            >
-              Save
-            </IonButton>
-          </IonCol>
-        </IonRow>
+          <IonButton
+            expand="block"
+            color="primary"
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+          >
+            Save
+          </IonButton>
+        </div>
       </IonContent>
     </IonPage>
   );

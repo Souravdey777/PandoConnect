@@ -2,141 +2,95 @@ import React from "react";
 import {
   IonCard,
   IonCardContent,
-  IonList,
-  IonLabel,
   IonIcon,
-  IonText,
-  IonItem,
   IonAvatar,
 } from "@ionic/react";
-import Linkify from 'react-linkify';
+import Linkify from "react-linkify";
 import {
   chatbubbleEllipsesOutline,
   heart,
   heartOutline,
+  leafOutline,
 } from "ionicons/icons";
 import { getTimeAgoString } from "../../dayFormat/dateFormat";
+import { resolveSentiment } from "../../helpers/sentiment";
 
 const LinkItem = ({ link, index, showCount, url, browser, fullblog }) => {
+  const sentiment = resolveSentiment(link);
+
   return (
-    <IonCard routerLink={url} style={{
-      margin: "5px",
-      boxShadow: "rgba(2, 2, 2, 0.2) 0px 2px 10px",
-      borderRadius: "13px",
-    }}>
-      <IonCardContent class="ion-no-padding">
-        {link?.pictureURL ? <img style={{ margin: "auto" }} src={link?.pictureURL} alt="pic"></img> : null}
-        <IonList lines="none">
-          <IonItem lines="none">
-            <IonLabel>
-              <p style={{
-                fontSize: "0.9rem",
-                fontWeight: "bold",
-                paddingBottom: "6px"
-              }}><IonText className="ion-text-wrap">
-                  {link.url}
-                </IonText>
-              </p>
-              {fullblog && <p
-                style={{
-                  alignItems: "center",
-                  fontSize: "0.8rem",
-                  fontWeight: "normal",
-                }}
+    <IonCard routerLink={url} className="link-card">
+      <IonCardContent className="ion-no-padding">
+        {link?.pictureURL ? (
+          <div className="card-media">
+            <img src={link.pictureURL} alt="" />
+            {sentiment && (
+              <span
+                className={`sentiment-badge ${sentiment.cls}`}
+                aria-label={`Sentiment: ${sentiment.label}`}
               >
-                <IonText
-                  style={{
-                    verticalAlign: "middle",
-                  }}
-                  className="ion-text-wrap"
-                >
-                  <Linkify>{link.description}</Linkify>
-                </IonText>
-              </p>}
-            </IonLabel>
-          </IonItem>
-          <IonItem lines="none">
-            <IonLabel style={{ padding: "0px" }}>
-              <div
-                style={{
-                  alignItems: "center",
-                  fontSize: "0.7 rem",
-                  fontWeight: "normal",
-                }}
+                <IonIcon icon={leafOutline} aria-hidden="true" />
+                {sentiment.label}
+              </span>
+            )}
+          </div>
+        ) : null}
+
+        <div style={{ padding: "16px" }}>
+          <h2 className="link-card__title">
+            <Linkify>{link.url}</Linkify>
+          </h2>
+
+          {fullblog && (
+            <p className="link-card__desc">
+              <Linkify>{link.description}</Linkify>
+            </p>
+          )}
+
+          {!link?.pictureURL && sentiment && (
+            <div style={{ marginBottom: "8px" }}>
+              <span
+                className={`sentiment-badge ${sentiment.cls}`}
+                aria-label={`Sentiment: ${sentiment.label}`}
               >
-                <IonText
-                  style={{
-                    verticalAlign: "middle",
-                    fontSize: "0.7rem",
-                    fontWeight: "bold",
-                  }}
-                >
-                  <p>{link.postedBy.name}</p>
-                  <p style={{
-                    verticalAlign: "middle",
-                    fontSize: "0.7rem",
-                    color: "#999",
-                    fontWeight: "normal"
-                  }}
-                  >
-                    {getTimeAgoString(link.created)}</p>
+                <IonIcon icon={leafOutline} aria-hidden="true" />
+                {sentiment.label}
+              </span>
+            </div>
+          )}
 
-                </IonText>
-
-                {link.voteCount > 0 ?
-                  <>
-                    <IonIcon
-                      icon={heart}
-                      style={{
-                        verticalAlign: "middle",
-                      }}
-                    />{" "}
-                    <IonText
-                      style={{
-                        verticalAlign: "middle",
-                      }}
-                    >
-                      {link.voteCount}
-                    </IonText>
-                  </> :
-                  <IonIcon
-                    icon={heartOutline}
-                    style={{
-                      verticalAlign: "middle",
-                    }}
-                  />}
-                {" "}
-                {link.comments.length > 0 && (
-                  <>
-
-                    <IonIcon
-                      icon={chatbubbleEllipsesOutline}
-                      style={{
-                        verticalAlign: "middle",
-                      }}
-                    />{" "}
-                    <IonText
-                      style={{
-                        verticalAlign: "middle",
-                      }}
-                    >
-                      {link.comments.length}
-                    </IonText>
-                  </>
-                )}
-              </div>
-            </IonLabel>
-            <IonAvatar slot="end">
-              <img
-                src={link.postedBy.photoURL}
-                style={{
-                  verticalAlign: "middle",
-                }}
-                alt="profile"
-              />
+          <div className="link-card__meta">
+            <IonAvatar style={{ width: "28px", height: "28px" }}>
+              <img src={link.postedBy.photoURL} alt="" />
             </IonAvatar>
-          </IonItem>
-        </IonList>
+            <span className="meta-name">{link.postedBy.name}</span>
+            <span className="meta-sep">·</span>
+            <span>{getTimeAgoString(link.created)}</span>
+
+            <span className="link-card__stats">
+              <span
+                className="link-card__stat"
+                aria-label={`${link.voteCount || 0} upvotes`}
+              >
+                <IonIcon
+                  icon={link.voteCount > 0 ? heart : heartOutline}
+                  color={link.voteCount > 0 ? "secondary" : undefined}
+                  aria-hidden="true"
+                />
+                {link.voteCount > 0 ? link.voteCount : null}
+              </span>
+              {link.comments.length > 0 && (
+                <span
+                  className="link-card__stat"
+                  aria-label={`${link.comments.length} comments`}
+                >
+                  <IonIcon icon={chatbubbleEllipsesOutline} aria-hidden="true" />
+                  {link.comments.length}
+                </span>
+              )}
+            </span>
+          </div>
+        </div>
       </IonCardContent>
     </IonCard>
   );
