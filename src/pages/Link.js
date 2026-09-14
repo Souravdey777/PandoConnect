@@ -6,11 +6,7 @@ import {
   IonPage,
   IonContent,
   IonButton,
-  IonListHeader,
-  IonLabel,
   IonAvatar,
-  IonList,
-  IonItem,
   IonIcon,
   IonInput,
 } from "@ionic/react";
@@ -157,73 +153,71 @@ const Link = (props) => {
           closeAction={handleCloseModal}
         />
         {link && (
-          <>
-            <div className="app-container" style={{ paddingTop: "12px" }}>
-              <LinkItem link={link} fullblog={true} browser={openBrowser} />
-              <div style={{ marginTop: "12px" }}>
-                <IonButton
-                  className="upvote-pill"
-                  fill={hasVoted ? "solid" : "outline"}
-                  color="secondary"
-                  onClick={() => handleAddVote()}
-                  aria-label={`Upvote this story. ${link.voteCount || 0} upvotes`}
-                >
-                  <IonIcon
-                    slot="start"
-                    icon={hasVoted ? heart : heartOutline}
-                    aria-hidden="true"
-                  />
-                  {link.voteCount > 0 ? `${link.voteCount} upvotes` : "Upvote"}
-                </IonButton>
-              </div>
+          <div className="story-detail">
+            <LinkItem link={link} fullblog={true} browser={openBrowser} />
+
+            <div className="story-detail__actions">
+              <IonButton
+                className="upvote-pill"
+                fill={hasVoted ? "solid" : "outline"}
+                color="secondary"
+                onClick={() => handleAddVote()}
+                aria-label={`Upvote this story. ${link.voteCount || 0} upvotes`}
+              >
+                <IonIcon
+                  slot="start"
+                  icon={hasVoted ? heart : heartOutline}
+                  aria-hidden="true"
+                />
+                {link.voteCount > 0 ? `${link.voteCount} upvotes` : "Upvote"}
+              </IonButton>
             </div>
-            <IonListHeader>
-              <IonLabel>
-                <h3 className="app-h2">
-                  {link.comments.length > 0
-                    ? `Comments (${link.comments.length})`
-                    : "Comments"}
-                </h3>
-              </IonLabel>
-            </IonListHeader>
-            {user && <IonList>
-              <IonItem>
-                <IonAvatar slot="start">
-                  <img
-                    src={user.photoURL}
-                    style={{
-                      verticalAlign: "middle",
-                    }}
-                    alt="profile"
-                  />
+
+            <h3 className="app-h2 story-detail__section">
+              {link.comments.length > 0
+                ? `Comments (${link.comments.length})`
+                : "Comments"}
+            </h3>
+
+            {user && (
+              <div className="comment-box">
+                <IonAvatar className="comment-box__avatar">
+                  <img src={user.photoURL} alt="" />
                 </IonAvatar>
                 <IonInput
-                  placeholder="Your comment"
+                  className="comment-box__input"
+                  placeholder="Add a comment…"
                   value={commentText}
                   onIonChange={(e) => setCommentText(e.target.value)}
                 />
-                <IonIcon icon={send} color="primary" size="small" onClick={() => handleSendAction(commentText)}></IonIcon>
-              </IonItem>
-            </IonList>}
-            <IonContent>
-              {link.comments.length > 0 ? (
-                link.comments.map((comment, index) => (
-                  <LinkComment
-                    key={index}
-                    comment={comment}
-                    link={link}
-                    setLink={setLink}
-                  />
-                ))
-              ) : (
-                <div className="empty-state">
-                  <IonIcon icon={chatbubbleEllipsesOutline} />
-                  <h3>No comments yet</h3>
-                  <p>Share a kind word or your own experience.</p>
-                </div>
-              )}
-            </IonContent>
-          </>
+                <button
+                  type="button"
+                  className="comment-box__send"
+                  onClick={() => handleSendAction(commentText)}
+                  aria-label="Send comment"
+                >
+                  <IonIcon icon={send} aria-hidden="true" />
+                </button>
+              </div>
+            )}
+
+            {link.comments.length > 0 ? (
+              link.comments.map((comment, index) => (
+                <LinkComment
+                  key={index}
+                  comment={comment}
+                  link={link}
+                  setLink={setLink}
+                />
+              ))
+            ) : (
+              <div className="empty-state">
+                <IonIcon icon={chatbubbleEllipsesOutline} />
+                <h3>No comments yet</h3>
+                <p>Share a kind word or your own experience.</p>
+              </div>
+            )}
+          </div>
         )}
       </IonContent>
     </IonPage>

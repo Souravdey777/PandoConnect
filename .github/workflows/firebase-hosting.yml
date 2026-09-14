@@ -1,0 +1,40 @@
+name: Deploy to Firebase Hosting
+
+# Auto-builds and deploys the app to Firebase Hosting on every push to master.
+# Building here (before deploy) is what prevents the "Page Not Found" you saw
+# from deploying an empty build/ directory.
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch: {} # allow manual runs from the Actions tab
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          CI: "false" # don't treat lint warnings as errors
+          NODE_OPTIONS: "--openssl-legacy-provider" # react-scripts 3.x on Node 18+
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Deploy to Firebase Hosting
+        run: firebase deploy --only hosting --project pandoconnect-c9991 --non-interactive
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
