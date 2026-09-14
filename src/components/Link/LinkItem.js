@@ -14,16 +14,32 @@ import {
 } from "ionicons/icons";
 import { getTimeAgoString } from "../../dayFormat/dateFormat";
 import { resolveSentiment } from "../../helpers/sentiment";
+import { coverImageFor, picsumFor } from "../../helpers/coverImage";
 
 const LinkItem = ({ link, index, showCount, url, browser, fullblog }) => {
   const sentiment = resolveSentiment(link);
+  const cover = link?.pictureURL || coverImageFor(link);
+
+  // If a post's own image is broken/missing, fall back to a decorative cover
+  // once; only hide the media if that fallback also fails.
+  function handleMediaError(e) {
+    const img = e.currentTarget;
+    const fallback = picsumFor(link);
+    if (!img.dataset.fellBack && img.src !== fallback) {
+      img.dataset.fellBack = "1";
+      img.src = fallback;
+      return;
+    }
+    const wrap = img.closest(".card-media");
+    if (wrap) wrap.style.display = "none";
+  }
 
   return (
     <IonCard routerLink={url} className="link-card">
       <IonCardContent className="ion-no-padding">
-        {link?.pictureURL ? (
+        {cover ? (
           <div className="card-media">
-            <img src={link.pictureURL} alt="" />
+            <img src={cover} alt="" loading="lazy" onError={handleMediaError} />
             {sentiment && (
               <span
                 className={`sentiment-badge ${sentiment.cls}`}
@@ -47,7 +63,7 @@ const LinkItem = ({ link, index, showCount, url, browser, fullblog }) => {
             </p>
           )}
 
-          {!link?.pictureURL && sentiment && (
+          {!cover && sentiment && (
             <div style={{ marginBottom: "8px" }}>
               <span
                 className={`sentiment-badge ${sentiment.cls}`}

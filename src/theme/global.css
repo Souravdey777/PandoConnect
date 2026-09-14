@@ -128,9 +128,10 @@ ion-searchbar.app-searchbar {
   margin-inline: auto;
 }
 
-/* Inside the feed header the searchbar aligns left with the grid. */
+/* Inside the feed header the searchbar aligns left and fills the width. */
 .feed-header .app-searchbar {
   margin-inline: 0;
+  max-width: none;
 }
 
 /* ---------- Tab bar ---------- */
@@ -142,7 +143,7 @@ ion-tab-bar.app-tab-bar {
   --border: 0;
   border-radius: 22px 22px 0 0;
   height: 62px;
-  box-shadow: 0 -2px 16px rgba(22, 35, 59, 0.08);
+  box-shadow: 0 -2px 16px rgba(31, 42, 40, 0.08);
   padding-top: 4px;
 }
 
@@ -188,6 +189,12 @@ ion-tab-button ion-label {
 /* Floating variant, pinned over a card image */
 .card-media {
   position: relative;
+}
+.card-media img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
 }
 .card-media .sentiment-badge {
   position: absolute;
@@ -271,21 +278,92 @@ ion-tab-button ion-label {
   margin: 0;
 }
 
+/* Flat skeleton — matches the divided feed. */
 .skeleton-card {
-  background: var(--ion-item-background);
-  border: 1px solid var(--app-border);
-  border-radius: var(--app-radius);
-  box-shadow: var(--app-elevation-sm);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--app-border);
+  border-radius: 0;
+  box-shadow: none;
   overflow: hidden;
-  margin-bottom: var(--sp-3);
+  margin: 0;
+  padding: 12px 0;
 }
 .skeleton-card .sk-media {
-  width: 100%;
-  height: 160px;
-  margin: 0;
+  height: 200px;
+  margin: 0 16px 12px;
+  border-radius: var(--app-radius-sm);
+  overflow: hidden;
 }
 .skeleton-card .sk-body {
-  padding: var(--sp-4);
+  padding: 0 16px;
+}
+
+/* ---------- Single post (detail) ---------- */
+
+.story-detail {
+  max-width: var(--app-content-width);
+  margin-inline: auto;
+  padding: 12px 0 24px;
+}
+/* The post reads flat like a feed item, not a floating card. */
+.story-detail .link-card {
+  --background: transparent;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+}
+.story-detail .card-media {
+  margin: 0 16px 12px;
+  border-radius: var(--app-radius);
+  overflow: hidden;
+}
+.story-detail__actions {
+  padding: 0 16px;
+  margin-bottom: 4px;
+}
+.story-detail__section {
+  padding: 0 16px;
+  margin: 16px 0 10px;
+}
+.comment-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 16px 16px;
+  padding: 6px 6px 6px 10px;
+  border: 1px solid var(--app-border);
+  border-radius: 999px;
+  background: var(--app-surface);
+}
+.comment-box__avatar {
+  width: 32px;
+  height: 32px;
+  flex: none;
+}
+.comment-box__input {
+  --padding-start: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  flex: 1;
+}
+.comment-box__send {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ion-color-primary);
+  color: var(--ion-color-primary-contrast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.comment-box__send ion-icon {
+  font-size: 18px;
 }
 
 /* ---------- Auth / welcome card ---------- */
@@ -364,7 +442,8 @@ ion-tab-button ion-label {
 /* Shared max content width so the header block and the card grid line up
  * on desktop instead of drifting apart. */
 :root {
-  --app-content-width: 1120px;
+  /* Feed fills the center column; `none` = no max-width cap. */
+  --app-content-width: none;
 }
 
 .feed {
@@ -384,12 +463,36 @@ ion-tab-button ion-label {
  * One column on phones, more as width allows. No JS width math. */
 .feed-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--sp-4);
+  grid-template-columns: 1fr;
+  gap: 0;
   align-items: start;
   width: 100%;
   max-width: var(--app-content-width);
   margin-inline: auto;
+}
+
+/* Flat feed: posts read as a divided list, not stacked cards. */
+.feed-grid .link-card {
+  --background: transparent;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  padding: 8px 0 4px;
+  border-bottom: 1px solid var(--app-border);
+  transition: background 0.12s;
+}
+.feed-grid .link-card:last-child {
+  border-bottom: 0;
+}
+.feed-grid .link-card:hover {
+  background: var(--app-surface-alt);
+}
+.feed-grid .card-media {
+  margin: 0 16px 12px;
+  border-radius: var(--app-radius-sm);
+  overflow: hidden;
 }
 
 /* ==========================================================================
@@ -445,6 +548,7 @@ ion-tab-button ion-label {
   background: var(--ion-item-background);
   border-right: 1px solid var(--app-border);
   overflow-y: auto;
+  color: var(--ion-text-color);
 }
 .sidebar__brand {
   display: flex;
@@ -768,8 +872,12 @@ ion-tab-button ion-label {
 }
 .composer__placeholder {
   flex: 1;
+  min-width: 0;
   color: var(--app-text-muted);
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .composer__actions {
   display: flex;
@@ -808,6 +916,7 @@ ion-tab-button ion-label {
   padding: 20px 16px;
   background: var(--ion-item-background);
   border-left: 1px solid var(--app-border);
+  color: var(--ion-text-color);
 }
 .pp-card {
   text-align: center;
