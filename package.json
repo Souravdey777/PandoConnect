@@ -5,7 +5,6 @@
   "dependencies": {
     "@capacitor/core": "2.2.0",
     "@ionic/react": "^5.0.7",
-    "@ionic/react-hooks": "0.0.8",
     "@ionic/react-router": "^5.0.7",
     "@progress/kendo-react-buttons": "^3.14.0",
     "@progress/kendo-react-conversational-ui": "^3.14.0",
